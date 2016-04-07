@@ -1,0 +1,39 @@
+// XFile.idl : XFile 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(XFile.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(1B9FF0A9-CCFC-4E4F-9051-213566E483AE),
+	dual,
+	nonextensible,
+	helpstring("ILogFactory 接口"),
+	pointer_default(unique)
+]
+interface ILogFactory : IDispatch{
+	[id(1), helpstring("方法Create")] HRESULT Create([in] LONG FileType, [in] BSTR AppName, [in] BSTR Configue, [in] BSTR Section, [out] BSTR* LogName, [out] BSTR* XFile);
+	[id(2), helpstring("方法LogMonitor")] HRESULT LogMonitor([in] LONG Handle, [in] BSTR FileName);
+	[id(3), helpstring("方法Close")] HRESULT Close([in] BSTR AppName, [in] BSTR LogName);
+};
+[
+	uuid(114CA3E2-4514-49B9-AA3B-9E0A6E17EE24),
+	version(1.0),
+	helpstring("XFile 1.0 类型库")
+]
+library XFileLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(742A6ED8-2816-498C-868E-C18EF812FD87),
+		helpstring("LogFactory Class")
+	]
+	coclass LogFactory
+	{
+		[default] interface ILogFactory;
+	};
+};

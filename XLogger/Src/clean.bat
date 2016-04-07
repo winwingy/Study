@@ -1,0 +1,10 @@
+del /s *.obj
+del /s *.pdb
+del /s *.idb
+del /s *.sbr
+del /s *.pch
+del /s *.ilk
+del /s *.ncb
+del /s *.sdf
+del /s *.tlog
+del /s *.user

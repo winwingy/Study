@@ -1,0 +1,54 @@
+目录结构说明
+ XLogger ---- Doc              说明文件
+          |-- Include          日志接口头文件
+          |-- Outpu ---- Exe   日志存储组件以及分析工具 
+          |          |-- Lib   日志Lib文件
+          |-- Src              整个日志源码
+
+一、XLogger说明：
+  XLogger是一个日志组件。包括两个部分：
+  1、XFile.exe 是进程外存储组件，负责日志数据存储。这时一个COM组件，需要注册。
+     日志存储组件会自动管理产生的日志，默认是最大300兆数据，多余300兆会自动删除。
+  2、日志接口部分，和客户端模块连接在一起，提供日志存储接口。包括XLogger.h
+     xlogger2.h以及静态链接库。 
+  3、LogAnalyzer.exe，可根据记录的分析模块运行情况，供开发者参考。
+
+二、xlogger2.h文件说明
+  该文件定义了三个宏，一个是打开日志文件，一个是记录日志，另外就是关闭日志。
+通常日志记录前要打开日志文件，之后记录，最后关闭日志文件。
+  1、宏XLOGGER2_OPEN(FileName) 用于打开日志文件。其中参数是日志文件名称。
+     在模块所在EXE文件路径下有个XLog目录，日志文件就存储在这里。
+  2、XLOGGER2_FUNCT_INFO用于记录日志。没有参数，应该在主要函数的入口填写。
+  3、当日志组件不再需要使用时候，要关闭日志文件。关闭宏是XLOGGER2_CLOSE。
+
+
+三、怎么调用日志模块：
+  引入日志定义，例如（注意，请根据位置关系定义合适路径路径）：
+   #define ENABLE_XLOGGER
+   #include "..\\Logger\\xlogger2.h"
+   #ifdef _DEBUG
+      #pragma comment(lib, "..\\Workspace\\debug\\XLogger.lib")
+   #else
+      #pragma comment(lib, "..\\Workspace\\release\\XLogger.lib")
+   #endif
+  其中，ENABLE_XLOGGER的目的是允许和禁止日志存储。通常用该日志来辅助分析一些
+问题，当问题已定位和解决，日志也无存在必要。这时不用删除添加的日志记录代码，
+仅仅把该定义去掉即可。
+
+四、注意事项
+  1、不能在链接库DllMain直接或者间接调用XLOGGER2_OPEN 
+  2、不能在链接库中，默认导出函数使用日志功能。例如：DllCanUnloadNow、DllCanUnloadNowForCSD等。
+  3、不能在全局变量构造函数或者协构函数直接或者间接的使用日志对象。
+  
+
+五、疑问
+  1、可以多次调用XLOGGER2_OPEN宏吗？ 
+     可以，只需要有对应的XLOGGER2_CLOSE即可。
+  2、没有日志文件，怎么知道问题在哪？
+     日志文件和虚拟盘日志文件存储在同一个位置。虚拟盘目录下有个xlog文件夹，该文件夹下就是日志文件。
+  3、如何辅助检查是否在DLlMain间接误用了XLOGGER2_OPEN？
+     XLOGGER2_OPEN内部有TRACE函数输出执行信息，因此只要编译时候查看是否有信息输出即可（注意
+     只有在Debug模式下编译有效）：!!! -> CreateFactory 。查看工具：DebugView
+
+
+

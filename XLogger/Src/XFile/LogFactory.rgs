@@ -1,0 +1,23 @@
+HKCR
+{
+	XFile.LogFactory.1 = s 'LogFactory Class'
+	{
+		CLSID = s '{742A6ED8-2816-498C-868E-C18EF812FD87}'
+	}
+	XFile.LogFactory = s 'LogFactory Class'
+	{
+		CLSID = s '{742A6ED8-2816-498C-868E-C18EF812FD87}'
+		CurVer = s 'XFile.LogFactory.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {742A6ED8-2816-498C-868E-C18EF812FD87} = s 'LogFactory Class'
+		{
+			ProgID = s 'XFile.LogFactory.1'
+			VersionIndependentProgID = s 'XFile.LogFactory'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			'TypeLib' = s '{114CA3E2-4514-49B9-AA3B-9E0A6E17EE24}'
+		}
+	}
+}

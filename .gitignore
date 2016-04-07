@@ -26,3 +26,16 @@
 *.exe
 *.out
 *.app
+
+# vs general file
+*.ipch
+*.suo
+*.opensdf
+*.sdf
+*/Debug/
+*/*/Debug/
+*/*/*/Debug/
+*/Release/
+*/*/Release/
+*/*/*/Release/
+*/*/Output/

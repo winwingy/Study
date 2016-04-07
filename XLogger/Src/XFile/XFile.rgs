@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		'%APPID%' = s 'XFile'
+		'XFile.EXE'
+		{
+			val AppID = s '%APPID%'
+		}
+	}
+}
