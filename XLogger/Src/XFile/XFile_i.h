@@ -3,18 +3,18 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 7.00.0500 */
-/* at Tue Dec 03 09:51:46 2013
+ /* File created by MIDL compiler version 8.00.0603 */
+/* at Fri Apr 08 09:43:47 2016
  */
-/* Compiler settings for .\XFile.idl:
-    Oicf, W1, Zp8, env=Win32 (32b run)
+/* Compiler settings for XFile.idl:
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
-    error checks: stub_data 
+    error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
          __declspec(uuid()), __declspec(selectany), __declspec(novtable)
          DECLSPEC_UUID(), MIDL_INTERFACE()
 */
-//@@MIDL_FILE_HEADING(  )
+/* @@MIDL_FILE_HEADING(  ) */
 
 #pragma warning( disable: 4049 )  /* more than 64k source lines */
 
@@ -48,6 +48,7 @@
 #ifndef __ILogFactory_FWD_DEFINED__
 #define __ILogFactory_FWD_DEFINED__
 typedef interface ILogFactory ILogFactory;
+
 #endif 	/* __ILogFactory_FWD_DEFINED__ */
 
 
@@ -105,6 +106,7 @@ EXTERN_C const IID IID_ILogFactory;
         
     };
     
+    
 #else 	/* C style interface */
 
     typedef struct ILogFactoryVtbl
@@ -114,8 +116,8 @@ EXTERN_C const IID IID_ILogFactory;
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             ILogFactory * This,
             /* [in] */ REFIID riid,
-            /* [iid_is][out] */ 
-            __RPC__deref_out  void **ppvObject);
+            /* [annotation][iid_is][out] */ 
+            _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             ILogFactory * This);
@@ -143,14 +145,22 @@ EXTERN_C const IID IID_ILogFactory;
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
             ILogFactory * This,
-            /* [in] */ DISPID dispIdMember,
-            /* [in] */ REFIID riid,
-            /* [in] */ LCID lcid,
-            /* [in] */ WORD wFlags,
-            /* [out][in] */ DISPPARAMS *pDispParams,
-            /* [out] */ VARIANT *pVarResult,
-            /* [out] */ EXCEPINFO *pExcepInfo,
-            /* [out] */ UINT *puArgErr);
+            /* [annotation][in] */ 
+            _In_  DISPID dispIdMember,
+            /* [annotation][in] */ 
+            _In_  REFIID riid,
+            /* [annotation][in] */ 
+            _In_  LCID lcid,
+            /* [annotation][in] */ 
+            _In_  WORD wFlags,
+            /* [annotation][out][in] */ 
+            _In_  DISPPARAMS *pDispParams,
+            /* [annotation][out] */ 
+            _Out_opt_  VARIANT *pVarResult,
+            /* [annotation][out] */ 
+            _Out_opt_  EXCEPINFO *pExcepInfo,
+            /* [annotation][out] */ 
+            _Out_opt_  UINT *puArgErr);
         
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *Create )( 
             ILogFactory * This,
