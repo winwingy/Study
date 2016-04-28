@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulateInput", "SimulateInput\SimulateInput.vcxproj", "{63E5976E-60A8-4BDD-9015-52FDB16D51AD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulateInputBeUse", "SimulateInputBeUse\SimulateInputBeUse.vcxproj", "{3BD45C20-1A42-4B59-B1F4-8386ACA6A490}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63E5976E-60A8-4BDD-9015-52FDB16D51AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{63E5976E-60A8-4BDD-9015-52FDB16D51AD}.Debug|Win32.Build.0 = Debug|Win32
+		{63E5976E-60A8-4BDD-9015-52FDB16D51AD}.Release|Win32.ActiveCfg = Release|Win32
+		{63E5976E-60A8-4BDD-9015-52FDB16D51AD}.Release|Win32.Build.0 = Release|Win32
+		{3BD45C20-1A42-4B59-B1F4-8386ACA6A490}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3BD45C20-1A42-4B59-B1F4-8386ACA6A490}.Debug|Win32.Build.0 = Debug|Win32
+		{3BD45C20-1A42-4B59-B1F4-8386ACA6A490}.Release|Win32.ActiveCfg = Release|Win32
+		{3BD45C20-1A42-4B59-B1F4-8386ACA6A490}.Release|Win32.Build.0 = Release|Win32
+		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Debug|Win32.Build.0 = Debug|Win32
+		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Release|Win32.ActiveCfg = Release|Win32
+		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
