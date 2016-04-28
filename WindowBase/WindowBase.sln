@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulateInputBeUse", "Simul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "QuickLauchShortCut", "QuickLauchShortCut\QuickLauchShortCut.vcxproj", "{FC27C945-4FB4-4807-B96A-A6D41B2CC472}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Debug|Win32.Build.0 = Debug|Win32
 		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Release|Win32.ActiveCfg = Release|Win32
 		{761C1D22-D5AA-4DD2-81B1-C18D7F2E6EEA}.Release|Win32.Build.0 = Release|Win32
+		{FC27C945-4FB4-4807-B96A-A6D41B2CC472}.Debug|Win32.ActiveCfg = Debug|Win32
+		{FC27C945-4FB4-4807-B96A-A6D41B2CC472}.Debug|Win32.Build.0 = Debug|Win32
+		{FC27C945-4FB4-4807-B96A-A6D41B2CC472}.Release|Win32.ActiveCfg = Release|Win32
+		{FC27C945-4FB4-4807-B96A-A6D41B2CC472}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
