@@ -1,0 +1,34 @@
+// TestA.idl : TestA 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(TestA.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(8EE9CD15-85A0-45B1-892F-463A8AB1D8D0),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IHolleWorld : IDispatch{
+};
+[
+	uuid(766E7E6E-AEFE-4773-B1B1-C97716D78A7B),
+	version(1.0),
+]
+library TestALib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(059BB5AC-D4C3-4A83-852B-0559D178C46E)		
+	]
+	coclass HolleWorld
+	{
+		[default] interface IHolleWorld;
+	};
+};
+

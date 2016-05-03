@@ -7,6 +7,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WLogger", "WLogger\WLogger.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShareMem", "ShareMem\ShareMem.vcxproj", "{7365DB23-6D47-421F-889D-CA189E42FFCB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestA", "TestA\TestA.vcxproj", "{716EE3DD-94AC-4B82-B085-5975F6CE0740}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test", "Test\Test.vcxproj", "{38DE27A9-698C-4B87-9E6D-7AC8F308F320}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestShareMem", "TestShareMem\TestShareMem.vcxproj", "{46373DDD-3EF6-4F3E-9240-D19592D5B3E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +27,18 @@ Global
 		{7365DB23-6D47-421F-889D-CA189E42FFCB}.Debug|Win32.Build.0 = Debug|Win32
 		{7365DB23-6D47-421F-889D-CA189E42FFCB}.Release|Win32.ActiveCfg = Release|Win32
 		{7365DB23-6D47-421F-889D-CA189E42FFCB}.Release|Win32.Build.0 = Release|Win32
+		{716EE3DD-94AC-4B82-B085-5975F6CE0740}.Debug|Win32.ActiveCfg = Debug|Win32
+		{716EE3DD-94AC-4B82-B085-5975F6CE0740}.Debug|Win32.Build.0 = Debug|Win32
+		{716EE3DD-94AC-4B82-B085-5975F6CE0740}.Release|Win32.ActiveCfg = Release|Win32
+		{716EE3DD-94AC-4B82-B085-5975F6CE0740}.Release|Win32.Build.0 = Release|Win32
+		{38DE27A9-698C-4B87-9E6D-7AC8F308F320}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38DE27A9-698C-4B87-9E6D-7AC8F308F320}.Debug|Win32.Build.0 = Debug|Win32
+		{38DE27A9-698C-4B87-9E6D-7AC8F308F320}.Release|Win32.ActiveCfg = Release|Win32
+		{38DE27A9-698C-4B87-9E6D-7AC8F308F320}.Release|Win32.Build.0 = Release|Win32
+		{46373DDD-3EF6-4F3E-9240-D19592D5B3E8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{46373DDD-3EF6-4F3E-9240-D19592D5B3E8}.Debug|Win32.Build.0 = Debug|Win32
+		{46373DDD-3EF6-4F3E-9240-D19592D5B3E8}.Release|Win32.ActiveCfg = Release|Win32
+		{46373DDD-3EF6-4F3E-9240-D19592D5B3E8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

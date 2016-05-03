@@ -5,6 +5,7 @@
 #include "resource.h"
 #include "WLogger_i.h"
 #include "xdlldata.h"
+#include "Logger.h"
 
 
 using namespace ATL;
@@ -25,6 +26,7 @@ CWLoggerModule _AtlModule;
 extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
 								LPTSTR /*lpCmdLine*/, int nShowCmd)
 {
+    MessageBox(nullptr, L"ss", L"ss", MB_OK);
 	return _AtlModule.WinMain(nShowCmd);
 }
 

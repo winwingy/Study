@@ -1,0 +1,16 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {059BB5AC-D4C3-4A83-852B-0559D178C46E} = s 'HolleWorld Class'
+		{
+			ForceRemove Programmable
+			LocalServer32 = s '%MODULE%'
+			{
+				val ServerExecutable = s '%MODULE_RAW%'
+			}
+			TypeLib = s '{766E7E6E-AEFE-4773-B1B1-C97716D78A7B}'
+			Version = s '1.0'
+		}
+	}
+}

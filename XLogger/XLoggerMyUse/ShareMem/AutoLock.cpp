@@ -11,6 +11,11 @@ AutoLockBase::~AutoLockBase()
     DeleteCriticalSection(&cs);
 }
 
+BOOL AutoLockBase::TryLock()
+{
+    return TryEnterCriticalSection(&cs);
+}
+
 void AutoLockBase::Lock()
 {
     EnterCriticalSection(&cs);
@@ -29,6 +34,11 @@ AutoLock::AutoLock(const AutoLockBase& lockBase)
     lockBase_.Lock();
 }
 
+AutoLock::AutoLock(const AutoLockBase& lockBase, bool* tryLockResult)
+    : lockBase_(lockBase)
+{
+    *tryLockResult = !!lockBase_.TryLock();
+}
 
 AutoLock::~AutoLock()
 {

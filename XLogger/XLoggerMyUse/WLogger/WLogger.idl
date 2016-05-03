@@ -8,11 +8,30 @@ import "oaidl.idl";
 import "ocidl.idl";
 
 [
+	object,
+	uuid(A9B29104-51FD-4410-8911-DAE6A3EF8B83),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ILogger : IDispatch{
+    [id(1)] HRESULT Write([in] BSTR* writeStr, [in] LONG wantWriteLen, [out, retval] LONG* writedLen);
+    [id(2)] HRESULT Init();
+    [id(3)] HRESULT Exit();
+};
+[
 	uuid(4459DB77-4469-4401-A6F8-6BE8D0DAB7F4),
 	version(1.0),
 ]
 library WLoggerLib
 {
 	importlib("stdole2.tlb");
+	[
+		uuid(D768101C-494E-4B20-920C-13E2D5594DEB)		
+	]
+	coclass Logger
+	{
+		[default] interface ILogger;
+	};
 };
 

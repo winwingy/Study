@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{034B566E-2F99-4E97-BD15-A07ADD511EA9}</ProjectGuid>
+    <ProjectGuid>{716EE3DD-94AC-4B82-B085-5975F6CE0740}</ProjectGuid>
     <Keyword>AtlProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -57,11 +57,11 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <HeaderFileName>WLogger_i.h</HeaderFileName>
-      <InterfaceIdentifierFileName>WLogger_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>WLogger_p.c</ProxyFileName>
+      <HeaderFileName>TestA_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>TestA_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>TestA_p.c</ProxyFileName>
       <GenerateStublessProxies>true</GenerateStublessProxies>
-      <TypeLibraryName>$(IntDir)WLogger.tlb</TypeLibraryName>
+      <TypeLibraryName>$(IntDir)TestA.tlb</TypeLibraryName>
       <DllDataFileName />
       <ValidateAllParameters>true</ValidateAllParameters>
     </Midl>
@@ -88,11 +88,11 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
       <TargetEnvironment>Win32</TargetEnvironment>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <HeaderFileName>WLogger_i.h</HeaderFileName>
-      <InterfaceIdentifierFileName>WLogger_i.c</InterfaceIdentifierFileName>
-      <ProxyFileName>WLogger_p.c</ProxyFileName>
+      <HeaderFileName>TestA_i.h</HeaderFileName>
+      <InterfaceIdentifierFileName>TestA_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>TestA_p.c</ProxyFileName>
       <GenerateStublessProxies>true</GenerateStublessProxies>
-      <TypeLibraryName>$(IntDir)WLogger.tlb</TypeLibraryName>
+      <TypeLibraryName>$(IntDir)TestA.tlb</TypeLibraryName>
       <DllDataFileName />
       <ValidateAllParameters>true</ValidateAllParameters>
     </Midl>
@@ -110,13 +110,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="HolleWorld.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="WLogger.cpp" />
-    <ClCompile Include="WLogger_i.c">
+    <ClCompile Include="TestA.cpp" />
+    <ClCompile Include="TestA_i.c">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </PrecompiledHeader>
@@ -134,30 +134,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Logger.h" />
+    <ClInclude Include="HolleWorld.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="WLogger_i.h" />
+    <ClInclude Include="TestA_i.h" />
     <ClInclude Include="xdlldata.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="WLogger.rc" />
+    <ResourceCompile Include="TestA.rc" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Logger.rgs" />
-    <None Include="WLogger.rgs" />
+    <None Include="HolleWorld.rgs" />
+    <None Include="TestA.rgs" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="WLogger.idl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ShareMem\ShareMem.vcxproj">
-      <Project>{7365db23-6d47-421f-889d-ca189e42ffcb}</Project>
-    </ProjectReference>
+    <Midl Include="TestA.idl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

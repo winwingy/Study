@@ -4,9 +4,9 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Tue May 03 18:17:42 2016
+/* at Tue May 03 17:16:58 2016
  */
-/* Compiler settings for WLogger.idl:
+/* Compiler settings for TestA.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
@@ -36,8 +36,8 @@
 #include "ole2.h"
 #endif /*COM_NO_WINDOWS_H*/
 
-#ifndef __WLogger_i_h__
-#define __WLogger_i_h__
+#ifndef __TestA_i_h__
+#define __TestA_i_h__
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -45,23 +45,23 @@
 
 /* Forward Declarations */ 
 
-#ifndef __ILogger_FWD_DEFINED__
-#define __ILogger_FWD_DEFINED__
-typedef interface ILogger ILogger;
+#ifndef __IHolleWorld_FWD_DEFINED__
+#define __IHolleWorld_FWD_DEFINED__
+typedef interface IHolleWorld IHolleWorld;
 
-#endif 	/* __ILogger_FWD_DEFINED__ */
+#endif 	/* __IHolleWorld_FWD_DEFINED__ */
 
 
-#ifndef __Logger_FWD_DEFINED__
-#define __Logger_FWD_DEFINED__
+#ifndef __HolleWorld_FWD_DEFINED__
+#define __HolleWorld_FWD_DEFINED__
 
 #ifdef __cplusplus
-typedef class Logger Logger;
+typedef class HolleWorld HolleWorld;
 #else
-typedef struct Logger Logger;
+typedef struct HolleWorld HolleWorld;
 #endif /* __cplusplus */
 
-#endif 	/* __Logger_FWD_DEFINED__ */
+#endif 	/* __HolleWorld_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -73,63 +73,54 @@ extern "C"{
 #endif 
 
 
-#ifndef __ILogger_INTERFACE_DEFINED__
-#define __ILogger_INTERFACE_DEFINED__
+#ifndef __IHolleWorld_INTERFACE_DEFINED__
+#define __IHolleWorld_INTERFACE_DEFINED__
 
-/* interface ILogger */
+/* interface IHolleWorld */
 /* [unique][nonextensible][dual][uuid][object] */ 
 
 
-EXTERN_C const IID IID_ILogger;
+EXTERN_C const IID IID_IHolleWorld;
 
 #if defined(__cplusplus) && !defined(CINTERFACE)
     
-    MIDL_INTERFACE("A9B29104-51FD-4410-8911-DAE6A3EF8B83")
-    ILogger : public IDispatch
+    MIDL_INTERFACE("8EE9CD15-85A0-45B1-892F-463A8AB1D8D0")
+    IHolleWorld : public IDispatch
     {
     public:
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Write( 
-            /* [in] */ BSTR *writeStr,
-            /* [in] */ LONG wantWriteLen,
-            /* [retval][out] */ LONG *writedLen) = 0;
-        
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Init( void) = 0;
-        
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Exit( void) = 0;
-        
     };
     
     
 #else 	/* C style interface */
 
-    typedef struct ILoggerVtbl
+    typedef struct IHolleWorldVtbl
     {
         BEGIN_INTERFACE
         
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
-            ILogger * This,
+            IHolleWorld * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
-            ILogger * This);
+            IHolleWorld * This);
         
         ULONG ( STDMETHODCALLTYPE *Release )( 
-            ILogger * This);
+            IHolleWorld * This);
         
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfoCount )( 
-            ILogger * This,
+            IHolleWorld * This,
             /* [out] */ UINT *pctinfo);
         
         HRESULT ( STDMETHODCALLTYPE *GetTypeInfo )( 
-            ILogger * This,
+            IHolleWorld * This,
             /* [in] */ UINT iTInfo,
             /* [in] */ LCID lcid,
             /* [out] */ ITypeInfo **ppTInfo);
         
         HRESULT ( STDMETHODCALLTYPE *GetIDsOfNames )( 
-            ILogger * This,
+            IHolleWorld * This,
             /* [in] */ REFIID riid,
             /* [size_is][in] */ LPOLESTR *rgszNames,
             /* [range][in] */ UINT cNames,
@@ -137,7 +128,7 @@ EXTERN_C const IID IID_ILogger;
             /* [size_is][out] */ DISPID *rgDispId);
         
         /* [local] */ HRESULT ( STDMETHODCALLTYPE *Invoke )( 
-            ILogger * This,
+            IHolleWorld * This,
             /* [annotation][in] */ 
             _In_  DISPID dispIdMember,
             /* [annotation][in] */ 
@@ -155,24 +146,12 @@ EXTERN_C const IID IID_ILogger;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Write )( 
-            ILogger * This,
-            /* [in] */ BSTR *writeStr,
-            /* [in] */ LONG wantWriteLen,
-            /* [retval][out] */ LONG *writedLen);
-        
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Init )( 
-            ILogger * This);
-        
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Exit )( 
-            ILogger * This);
-        
         END_INTERFACE
-    } ILoggerVtbl;
+    } IHolleWorldVtbl;
 
-    interface ILogger
+    interface IHolleWorld
     {
-        CONST_VTBL struct ILoggerVtbl *lpVtbl;
+        CONST_VTBL struct IHolleWorldVtbl *lpVtbl;
     };
 
     
@@ -180,37 +159,28 @@ EXTERN_C const IID IID_ILogger;
 #ifdef COBJMACROS
 
 
-#define ILogger_QueryInterface(This,riid,ppvObject)	\
+#define IHolleWorld_QueryInterface(This,riid,ppvObject)	\
     ( (This)->lpVtbl -> QueryInterface(This,riid,ppvObject) ) 
 
-#define ILogger_AddRef(This)	\
+#define IHolleWorld_AddRef(This)	\
     ( (This)->lpVtbl -> AddRef(This) ) 
 
-#define ILogger_Release(This)	\
+#define IHolleWorld_Release(This)	\
     ( (This)->lpVtbl -> Release(This) ) 
 
 
-#define ILogger_GetTypeInfoCount(This,pctinfo)	\
+#define IHolleWorld_GetTypeInfoCount(This,pctinfo)	\
     ( (This)->lpVtbl -> GetTypeInfoCount(This,pctinfo) ) 
 
-#define ILogger_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
+#define IHolleWorld_GetTypeInfo(This,iTInfo,lcid,ppTInfo)	\
     ( (This)->lpVtbl -> GetTypeInfo(This,iTInfo,lcid,ppTInfo) ) 
 
-#define ILogger_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
+#define IHolleWorld_GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId)	\
     ( (This)->lpVtbl -> GetIDsOfNames(This,riid,rgszNames,cNames,lcid,rgDispId) ) 
 
-#define ILogger_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
+#define IHolleWorld_Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr)	\
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
-
-#define ILogger_Write(This,writeStr,wantWriteLen,writedLen)	\
-    ( (This)->lpVtbl -> Write(This,writeStr,wantWriteLen,writedLen) ) 
-
-#define ILogger_Init(This)	\
-    ( (This)->lpVtbl -> Init(This) ) 
-
-#define ILogger_Exit(This)	\
-    ( (This)->lpVtbl -> Exit(This) ) 
 
 #endif /* COBJMACROS */
 
@@ -220,34 +190,29 @@ EXTERN_C const IID IID_ILogger;
 
 
 
-#endif 	/* __ILogger_INTERFACE_DEFINED__ */
+#endif 	/* __IHolleWorld_INTERFACE_DEFINED__ */
 
 
 
-#ifndef __WLoggerLib_LIBRARY_DEFINED__
-#define __WLoggerLib_LIBRARY_DEFINED__
+#ifndef __TestALib_LIBRARY_DEFINED__
+#define __TestALib_LIBRARY_DEFINED__
 
-/* library WLoggerLib */
+/* library TestALib */
 /* [version][uuid] */ 
 
 
-EXTERN_C const IID LIBID_WLoggerLib;
+EXTERN_C const IID LIBID_TestALib;
 
-EXTERN_C const CLSID CLSID_Logger;
+EXTERN_C const CLSID CLSID_HolleWorld;
 
 #ifdef __cplusplus
 
-class DECLSPEC_UUID("D768101C-494E-4B20-920C-13E2D5594DEB")
-Logger;
+class DECLSPEC_UUID("059BB5AC-D4C3-4A83-852B-0559D178C46E")
+HolleWorld;
 #endif
-#endif /* __WLoggerLib_LIBRARY_DEFINED__ */
+#endif /* __TestALib_LIBRARY_DEFINED__ */
 
 /* Additional Prototypes for ALL interfaces */
-
-unsigned long             __RPC_USER  BSTR_UserSize(     unsigned long *, unsigned long            , BSTR * ); 
-unsigned char * __RPC_USER  BSTR_UserMarshal(  unsigned long *, unsigned char *, BSTR * ); 
-unsigned char * __RPC_USER  BSTR_UserUnmarshal(unsigned long *, unsigned char *, BSTR * ); 
-void                      __RPC_USER  BSTR_UserFree(     unsigned long *, BSTR * ); 
 
 /* end of Additional Prototypes */
 
