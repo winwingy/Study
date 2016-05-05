@@ -48,15 +48,11 @@ END_COM_MAP()
 	{
 	}
 
-    STDMETHOD(Exit)();
-    STDMETHOD(Write)(BSTR* writeStr, LONG wantWriteLen, LONG* writedLen);
-    STDMETHOD(Read)(BSTR* buf, LONG bufLen, LONG* readedLen);
-
-private:
-    std::unique_ptr<LoggerImple> impl_;
-public:
+    STDMETHOD(Exit)(); 
     STDMETHOD(InitLog)(BSTR logPath, LONG level, LONG fileSize, LONG fileCount);
     STDMETHOD(log)(BSTR text, LONG len, LONG* logged);
+private:
+    std::unique_ptr<LoggerImple> impl_;
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(Logger), CLogger)

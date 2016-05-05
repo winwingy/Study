@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Thu May 05 11:47:08 2016
+/* at Thu May 05 15:54:09 2016
  */
 /* Compiler settings for WLogger.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -88,17 +88,7 @@ EXTERN_C const IID IID_ILogger;
     ILogger : public IDispatch
     {
     public:
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Write( 
-            /* [in] */ BSTR *writeStr,
-            /* [in] */ LONG wantWriteLen,
-            /* [retval][out] */ LONG *writedLen) = 0;
-        
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE Exit( void) = 0;
-        
-        virtual /* [id] */ HRESULT STDMETHODCALLTYPE Read( 
-            /* [out][in] */ BSTR *buf,
-            /* [in] */ LONG bufLen,
-            /* [retval][out] */ LONG *readedLen) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE InitLog( 
             /* [in] */ BSTR logPath,
@@ -169,20 +159,8 @@ EXTERN_C const IID IID_ILogger;
             /* [annotation][out] */ 
             _Out_opt_  UINT *puArgErr);
         
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Write )( 
-            ILogger * This,
-            /* [in] */ BSTR *writeStr,
-            /* [in] */ LONG wantWriteLen,
-            /* [retval][out] */ LONG *writedLen);
-        
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *Exit )( 
             ILogger * This);
-        
-        /* [id] */ HRESULT ( STDMETHODCALLTYPE *Read )( 
-            ILogger * This,
-            /* [out][in] */ BSTR *buf,
-            /* [in] */ LONG bufLen,
-            /* [retval][out] */ LONG *readedLen);
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *InitLog )( 
             ILogger * This,
@@ -233,14 +211,8 @@ EXTERN_C const IID IID_ILogger;
     ( (This)->lpVtbl -> Invoke(This,dispIdMember,riid,lcid,wFlags,pDispParams,pVarResult,pExcepInfo,puArgErr) ) 
 
 
-#define ILogger_Write(This,writeStr,wantWriteLen,writedLen)	\
-    ( (This)->lpVtbl -> Write(This,writeStr,wantWriteLen,writedLen) ) 
-
 #define ILogger_Exit(This)	\
     ( (This)->lpVtbl -> Exit(This) ) 
-
-#define ILogger_Read(This,buf,bufLen,readedLen)	\
-    ( (This)->lpVtbl -> Read(This,buf,bufLen,readedLen) ) 
 
 #define ILogger_InitLog(This,logPath,level,fileSize,fileCount)	\
     ( (This)->lpVtbl -> InitLog(This,logPath,level,fileSize,fileCount) ) 

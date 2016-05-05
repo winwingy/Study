@@ -20,12 +20,6 @@ public:
     virtual bool log(const TCHAR* text, int len, int* logged) = 0;
 };
 
-class LogLibDelegate
-{
-public:
-    virtual bool WriteToFile(const TCHAR* text, int len, int* writted) = 0;
-};
-
 class LogLibRef
 {
 public:
