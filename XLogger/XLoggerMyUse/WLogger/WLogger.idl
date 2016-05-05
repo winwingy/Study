@@ -16,8 +16,10 @@ import "ocidl.idl";
 ]
 interface ILogger : IDispatch{
     [id(1)] HRESULT Write([in] BSTR* writeStr, [in] LONG wantWriteLen, [out, retval] LONG* writedLen);
-    [id(2)] HRESULT Init();
     [id(3)] HRESULT Exit();
+    [id(4)] HRESULT Read([in, out] BSTR* buf, [in] LONG bufLen, [out, retval] LONG* readedLen);
+    [id(5)] HRESULT InitLog([in] BSTR logPath, [in] LONG level, [in] LONG fileSize, [in] LONG fileCount);
+    [id(6)] HRESULT log([in] BSTR text, [in] LONG len, [out, retval] LONG* logged);
 };
 [
 	uuid(4459DB77-4469-4401-A6F8-6BE8D0DAB7F4),

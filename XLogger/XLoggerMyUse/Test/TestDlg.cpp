@@ -8,6 +8,8 @@
 #include "afxdialogex.h"
 #include <assert.h>
 #include <string>
+#include "../LogLib/LogLib.h"
+#pragma comment(lib, "../Debug/Loglib.lib")
 
 #import "../Debug/WLogger.exe" no_namespace
 
@@ -35,6 +37,8 @@ BEGIN_MESSAGE_MAP(CTestDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
     ON_BN_CLICKED(IDC_BUTTON1, &CTestDlg::OnBnClickedButton1)
+    ON_BN_CLICKED(IDC_BUTTON2, &CTestDlg::OnBnClickedButton2)
+    ON_BN_CLICKED(IDC_BUTTON3, &CTestDlg::OnBnClickedButton3)
 END_MESSAGE_MAP()
 
 
@@ -100,13 +104,46 @@ void CTestDlg::OnBnClickedButton1()
                                     __uuidof(ILogger), (void**)&logger);
     assert(SUCCEEDED(hr));
     DWORD err = GetLastError();
-    logger->Init();
+    //logger->InitLog();
 
     std::wstring text = L"hello World";
     BSTR textStr = ::SysAllocString(text.c_str());
     LONG writedLen = logger->Write(&textStr, ::SysStringLen(textStr));
     ::SysFreeString(textStr);
+
+    BSTR bstr(::SysAllocStringByteLen(nullptr, 100));
+    LONG readed = 0;
+    readed = logger->Read(&bstr, 100);
+    ::SysFreeString(bstr);
     logger->Exit();
     logger->Release();
+
+}
+
+
+void CTestDlg::OnBnClickedButton2()
+{
+    // TODO:  在此添加控件通知处理程序代码
+    FILE* fp = nullptr;
+    errno_t err = _tfopen_s(&fp, L"D:\\test\\Unicode.txt", L"w,ccs=UNICODE");
+    if (0 != err)
+    {
+        assert(FALSE);
+        return;
+    }
+    wchar_t buf[5] = L"1234";
+    int writted = fwrite(buf, 2, 4, fp);
+    fflush(fp);
+    fclose(fp);
+}
+
+
+void CTestDlg::OnBnClickedButton3()
+{
+    // TODO:  在此添加控件通知处理程序代码
+    LogLib log;
+    log.Init(L"D:\\test\\atl.log", LOG_INFO_LEVEL_INFO, 100, 1);
+    LOG_INFO((L"Hello Log\n"));
+    LOG_INFO(L"Hello%d\n", 5);
 
 }

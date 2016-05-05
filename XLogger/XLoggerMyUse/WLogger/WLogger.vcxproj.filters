@@ -34,6 +34,15 @@
     <ClCompile Include="Logger.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="LoggerImple.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LogWrite.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LogFile.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -52,6 +61,15 @@
       <Filter>生成的文件</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggerImple.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LogWrite.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LogFile.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

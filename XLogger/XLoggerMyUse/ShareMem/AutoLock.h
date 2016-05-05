@@ -26,6 +26,6 @@ public:
     ~AutoLock();
 
 private:
-    AutoLockBase lockBase_;
+    AutoLockBase* lockBase_;
 };
 

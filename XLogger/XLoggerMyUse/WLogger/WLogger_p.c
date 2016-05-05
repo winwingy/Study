@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Tue May 03 18:17:42 2016
+/* at Thu May 05 11:47:08 2016
  */
 /* Compiler settings for WLogger.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -49,8 +49,8 @@
 
 #include "WLogger_i.h"
 
-#define TYPE_FORMAT_STRING_SIZE   47                                
-#define PROC_FORMAT_STRING_SIZE   109                               
+#define TYPE_FORMAT_STRING_SIZE   65                                
+#define PROC_FORMAT_STRING_SIZE   229                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   1            
@@ -153,7 +153,7 @@ static const WLogger_MIDL_PROC_FORMAT_STRING WLogger__MIDL_ProcFormatString =
 /* 46 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure Init */
+	/* Procedure Exit */
 
 /* 48 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
@@ -177,28 +177,143 @@ static const WLogger_MIDL_PROC_FORMAT_STRING WLogger__MIDL_ProcFormatString =
 /* 76 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
-	/* Procedure Exit */
+	/* Procedure Read */
 
 /* 78 */	0x33,		/* FC_AUTO_HANDLE */
 			0x6c,		/* Old Flags:  object, Oi2 */
 /* 80 */	NdrFcLong( 0x0 ),	/* 0 */
 /* 84 */	NdrFcShort( 0x9 ),	/* 9 */
-/* 86 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
-/* 88 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 90 */	NdrFcShort( 0x8 ),	/* 8 */
-/* 92 */	0x44,		/* Oi2 Flags:  has return, has ext, */
-			0x1,		/* 1 */
+/* 86 */	NdrFcShort( 0x14 ),	/* x86 Stack size/offset = 20 */
+/* 88 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 90 */	NdrFcShort( 0x24 ),	/* 36 */
+/* 92 */	0x47,		/* Oi2 Flags:  srv must size, clt must size, has return, has ext, */
+			0x4,		/* 4 */
 /* 94 */	0x8,		/* 8 */
-			0x1,		/* Ext Flags:  new corr desc, */
-/* 96 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 98 */	NdrFcShort( 0x0 ),	/* 0 */
+			0x7,		/* Ext Flags:  new corr desc, clt corr check, srv corr check, */
+/* 96 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 98 */	NdrFcShort( 0x1 ),	/* 1 */
 /* 100 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter buf */
+
+/* 102 */	NdrFcShort( 0x11b ),	/* Flags:  must size, must free, in, out, simple ref, */
+/* 104 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 106 */	NdrFcShort( 0x36 ),	/* Type Offset=54 */
+
+	/* Parameter bufLen */
+
+/* 108 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 110 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 112 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter readedLen */
+
+/* 114 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 116 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 118 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
 
 	/* Return value */
 
-/* 102 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
-/* 104 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
-/* 106 */	0x8,		/* FC_LONG */
+/* 120 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 122 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 124 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure InitLog */
+
+/* 126 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 128 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 132 */	NdrFcShort( 0xa ),	/* 10 */
+/* 134 */	NdrFcShort( 0x18 ),	/* x86 Stack size/offset = 24 */
+/* 136 */	NdrFcShort( 0x18 ),	/* 24 */
+/* 138 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 140 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x5,		/* 5 */
+/* 142 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 144 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 146 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 148 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter logPath */
+
+/* 150 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 152 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 154 */	NdrFcShort( 0x20 ),	/* Type Offset=32 */
+
+	/* Parameter level */
+
+/* 156 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 158 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 160 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter fileSize */
+
+/* 162 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 164 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 166 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter fileCount */
+
+/* 168 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 170 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 172 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Return value */
+
+/* 174 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 176 */	NdrFcShort( 0x14 ),	/* x86 Stack size/offset = 20 */
+/* 178 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Procedure log */
+
+/* 180 */	0x33,		/* FC_AUTO_HANDLE */
+			0x6c,		/* Old Flags:  object, Oi2 */
+/* 182 */	NdrFcLong( 0x0 ),	/* 0 */
+/* 186 */	NdrFcShort( 0xb ),	/* 11 */
+/* 188 */	NdrFcShort( 0x14 ),	/* x86 Stack size/offset = 20 */
+/* 190 */	NdrFcShort( 0x8 ),	/* 8 */
+/* 192 */	NdrFcShort( 0x24 ),	/* 36 */
+/* 194 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
+			0x4,		/* 4 */
+/* 196 */	0x8,		/* 8 */
+			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+/* 198 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 200 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 202 */	NdrFcShort( 0x0 ),	/* 0 */
+
+	/* Parameter text */
+
+/* 204 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
+/* 206 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 208 */	NdrFcShort( 0x20 ),	/* Type Offset=32 */
+
+	/* Parameter len */
+
+/* 210 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 212 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 214 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Parameter logged */
+
+/* 216 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 218 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 220 */	0x8,		/* FC_LONG */
+			0x0,		/* 0 */
+
+	/* Return value */
+
+/* 222 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 224 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
+/* 226 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0
@@ -245,6 +360,18 @@ static const WLogger_MIDL_TYPE_FORMAT_STRING WLogger__MIDL_TypeFormatString =
 			0x11, 0xc,	/* FC_RP [alloced_on_stack] [simple_pointer] */
 /* 44 */	0x8,		/* FC_LONG */
 			0x5c,		/* FC_PAD */
+/* 46 */	
+			0x11, 0x0,	/* FC_RP */
+/* 48 */	NdrFcShort( 0x6 ),	/* Offset= 6 (54) */
+/* 50 */	
+			0x13, 0x0,	/* FC_OP */
+/* 52 */	NdrFcShort( 0xffe2 ),	/* Offset= -30 (22) */
+/* 54 */	0xb4,		/* FC_USER_MARSHAL */
+			0x83,		/* 131 */
+/* 56 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 58 */	NdrFcShort( 0x4 ),	/* 4 */
+/* 60 */	NdrFcShort( 0x0 ),	/* 0 */
+/* 62 */	NdrFcShort( 0xfff4 ),	/* Offset= -12 (50) */
 
 			0x0
         }
@@ -284,7 +411,9 @@ static const unsigned short ILogger_FormatStringOffsetTable[] =
     (unsigned short) -1,
     0,
     48,
-    78
+    78,
+    126,
+    180
     };
 
 static const MIDL_STUBLESS_PROXY_INFO ILogger_ProxyInfo =
@@ -308,7 +437,7 @@ static const MIDL_SERVER_INFO ILogger_ServerInfo =
     0,
     0,
     0};
-CINTERFACE_PROXY_VTABLE(10) _ILoggerProxyVtbl = 
+CINTERFACE_PROXY_VTABLE(12) _ILoggerProxyVtbl = 
 {
     &ILogger_ProxyInfo,
     &IID_ILogger,
@@ -320,8 +449,10 @@ CINTERFACE_PROXY_VTABLE(10) _ILoggerProxyVtbl =
     0 /* IDispatch::GetIDsOfNames */ ,
     0 /* IDispatch_Invoke_Proxy */ ,
     (void *) (INT_PTR) -1 /* ILogger::Write */ ,
-    (void *) (INT_PTR) -1 /* ILogger::Init */ ,
-    (void *) (INT_PTR) -1 /* ILogger::Exit */
+    (void *) (INT_PTR) -1 /* ILogger::Exit */ ,
+    (void *) (INT_PTR) -1 /* ILogger::Read */ ,
+    (void *) (INT_PTR) -1 /* ILogger::InitLog */ ,
+    (void *) (INT_PTR) -1 /* ILogger::log */
 };
 
 
@@ -333,6 +464,8 @@ static const PRPC_STUB_FUNCTION ILogger_table[] =
     STUB_FORWARDING_FUNCTION,
     NdrStubCall2,
     NdrStubCall2,
+    NdrStubCall2,
+    NdrStubCall2,
     NdrStubCall2
 };
 
@@ -340,7 +473,7 @@ CInterfaceStubVtbl _ILoggerStubVtbl =
 {
     &IID_ILogger,
     &ILogger_ServerInfo,
-    10,
+    12,
     &ILogger_table[-3],
     CStdStubBuffer_DELEGATING_METHODS
 };

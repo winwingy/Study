@@ -10,15 +10,28 @@ const unsigned int ShareFileSize = 1024 * 2 * sizeof(TCHAR);
 const double ReadMustPer = 0.8;
 const int ReadInterval = 2000; // ∫¡√Î
 
+void UnmapView(TCHAR* p)
+{
+    if (p)
+        UnmapViewOfFile(p);
+}
+
+void CloseMapHandle(void* p)
+{
+    if (p != INVALID_HANDLE_VALUE &&
+        p != nullptr)
+        CloseHandle(p);
+}
+
 ShareMem::ShareMem()
-    : memHandleA_(INVALID_HANDLE_VALUE)
-    , memHandleB_(INVALID_HANDLE_VALUE)
-    , mapPtrA_(nullptr)
-    , mapPtrB_(nullptr)
-    , write_(nullptr)
+    : memHandleA_(nullptr, CloseMapHandle)
+    , memHandleB_(nullptr, CloseMapHandle)
+    , mapPtrA_(nullptr, UnmapView)
+    , mapPtrB_(nullptr, UnmapView)
+    , write_(nullptr, UnmapView)
     , wBeg_(0)
     , wEnd_(0)
-    , read_(nullptr)
+    , read_(nullptr, UnmapView)
     , rBeg_(0)
     , rEnd_(0)
     , dataLockWrite_(new AutoLockBase())
@@ -65,19 +78,19 @@ bool ShareMem::Init()
     {
         return false;
     }
-    memHandleA_ = CreateFileMapping((HANDLE)-1, nullptr, PAGE_READWRITE, 0,
-                                   ShareFileSize, L"ShareMemUse");
-    assert(memHandleA_ != INVALID_HANDLE_VALUE);
-    mapPtrA_ = (TCHAR*)MapViewOfFile(memHandleA_, 
-                                   FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0);
+    memHandleA_.reset(CreateFileMapping((HANDLE)-1, nullptr, PAGE_READWRITE, 0,
+                                   ShareFileSize, L"ShareMemUse"));
+    assert(memHandleA_.get() != INVALID_HANDLE_VALUE);
+    mapPtrA_.reset((TCHAR*)MapViewOfFile(memHandleA_.get(), 
+                                   FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0), UnmapView);
     write_ = mapPtrA_;
     wBeg_ = 0;
     wEnd_ = 0;
-    memHandleB_ = CreateFileMapping((HANDLE)-1, nullptr, PAGE_READWRITE, 0,
-                                   ShareFileSize, guiStrB);
-    assert(memHandleB_ != INVALID_HANDLE_VALUE);
-    mapPtrB_ = (TCHAR*)MapViewOfFile(memHandleB_,
-                                  FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0);
+    memHandleB_.reset(CreateFileMapping((HANDLE)-1, nullptr, PAGE_READWRITE, 0,
+                                   ShareFileSize, guiStrB));
+    assert(memHandleB_.get() != INVALID_HANDLE_VALUE);
+    mapPtrB_.reset((TCHAR*)MapViewOfFile(memHandleB_.get(),
+        FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0), UnmapView);
     read_ = mapPtrB_;
     rBeg_ = 0;
     rEnd_ = 0;
@@ -106,8 +119,8 @@ void ShareMem::ChangeWriteReadPtr()
     }
     else
     {
-        write_ = mapPtrB_;
-        read_ = mapPtrA_;
+        write_ = mapPtrA_;
+        read_ = mapPtrB_;
     }
 
 }
@@ -164,7 +177,7 @@ bool ShareMem::Write(const TCHAR* writeText, int writeLen, int* writedLen)//0 1 
             }
         } while (writeWill < 0);
 
-        memcpy(write_ + wEnd_, writeText + writeTextBeg, writeWill * sizeof(TCHAR));
+        memcpy(write_.get() + wEnd_, writeText + writeTextBeg, writeWill * sizeof(TCHAR));
         wEnd_ += writeWill;
         writeTextBeg += writeWill;
         writeLen -= writeWill;
@@ -187,7 +200,7 @@ bool ShareMem::Read(TCHAR* buf, int bufLen, int* readedLen)
         readWill = bufLen;
         if ((rEnd_ - rBeg_) < bufLen)
         {
-            bufLen = rEnd_ - rBeg_;
+            readWill = rEnd_ - rBeg_;
         }
         if (readWill <= 0)
         {
@@ -201,9 +214,18 @@ bool ShareMem::Read(TCHAR* buf, int bufLen, int* readedLen)
                 ChangeWriteReadPtr();
             }
         }
-    } while (readWill > 0);
+        if (rEnd_ - rBeg_ <= 0)
+        {
+            break;
+        }
+    } while (readWill <= 0);
 
-    memcpy(buf, read_ + rBeg_, readWill*sizeof(TCHAR));
+    if (0 == readWill)
+    {
+        return false;
+    }
+
+    memcpy(buf, read_.get() + rBeg_, readWill*sizeof(TCHAR));
     *readedLen = readWill;
     rBeg_ += readWill;
     return true;
@@ -213,27 +235,30 @@ void ShareMem::TryExit()
 {
     while (1)
     {
+        bool okW = true;
         {
-            bool ok = true;
-            {
-                AutoLock r(*dataLockRead_);
-                if (rEnd_ - rBeg_ != 0)
-                    ok = false;
-            }
-            if (!ok && readEvent_)
-                readEvent_(true, 1.0);
+            AutoLock r(*dataLockRead_);
+            if (rEnd_ - rBeg_ != 0)
+                okW = false;
+        }
+        if (!okW && readEvent_)
+            readEvent_(true, 1.0);
+
+        bool okR = true;
+        {
+            AutoLock w(*dataLockWrite_);
+            if (wEnd_ - wBeg_ != 0)
+                okR = false;
+        }
+        if (!okR && readEvent_)
+            readEvent_(true, 1.0);
+
+        if (okR && okW)
+        {
+            break;
         }
 
-        {
-            bool ok = true;
-            {
-                AutoLock w(*dataLockWrite_);
-                if (wEnd_ - wBeg_ != 0)
-                    ok = false;
-            }
-            if (!ok && readEvent_)
-                readEvent_(true, 1.0);
-        }
+        Sleep(500);
     }
 }
 

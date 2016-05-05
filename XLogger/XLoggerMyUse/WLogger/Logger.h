@@ -15,9 +15,7 @@
 
 using namespace ATL;
 
-class ShareMem;
-
-
+class LoggerImple;
 // CLogger
 
 class ATL_NO_VTABLE CLogger :
@@ -50,13 +48,15 @@ END_COM_MAP()
 	{
 	}
 
-    STDMETHOD(Init)();
     STDMETHOD(Exit)();
     STDMETHOD(Write)(BSTR* writeStr, LONG wantWriteLen, LONG* writedLen);
+    STDMETHOD(Read)(BSTR* buf, LONG bufLen, LONG* readedLen);
 
 private:
-    std::unique_ptr<ShareMem> shareMem_;
-
+    std::unique_ptr<LoggerImple> impl_;
+public:
+    STDMETHOD(InitLog)(BSTR logPath, LONG level, LONG fileSize, LONG fileCount);
+    STDMETHOD(log)(BSTR text, LONG len, LONG* logged);
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(Logger), CLogger)

@@ -2,6 +2,7 @@
 #include <tchar.h>
 #include <windows.h>
 #include <functional>
+#include <memory>
 class AutoLockBase;
 class ShareMem
 {
@@ -19,18 +20,18 @@ public:
 
 private:
     void ChangeWriteReadPtr();
-    HANDLE memHandleA_;
-    HANDLE memHandleB_;
-    TCHAR* mapPtrA_;
-    TCHAR* mapPtrB_;
-    TCHAR* write_;
+    std::unique_ptr<void, void(*)(void*)> memHandleA_;
+    std::unique_ptr<void, void(*)(void*)> memHandleB_;
+    std::shared_ptr<TCHAR> mapPtrA_;
+    std::shared_ptr<TCHAR> mapPtrB_;
+    std::shared_ptr<TCHAR> write_;
     int wBeg_;
     int wEnd_;
-    TCHAR* read_;
+    std::shared_ptr<TCHAR> read_;
     int rBeg_;
     int rEnd_;
     ReadEvent readEvent_;
-    AutoLockBase* dataLockWrite_;
-    AutoLockBase* dataLockRead_;
+    std::unique_ptr<AutoLockBase> dataLockWrite_;
+    std::unique_ptr<AutoLockBase> dataLockRead_;
 };
 

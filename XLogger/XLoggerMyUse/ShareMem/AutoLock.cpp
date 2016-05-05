@@ -29,18 +29,18 @@ void AutoLockBase::UnLock()
 
 
 AutoLock::AutoLock(const AutoLockBase& lockBase)
-    : lockBase_(lockBase)
+    : lockBase_(const_cast<AutoLockBase*>(&lockBase))
 {
-    lockBase_.Lock();
+    lockBase_->Lock();
 }
 
 AutoLock::AutoLock(const AutoLockBase& lockBase, bool* tryLockResult)
-    : lockBase_(lockBase)
+    : lockBase_(const_cast<AutoLockBase*>(&lockBase))
 {
-    *tryLockResult = !!lockBase_.TryLock();
+    *tryLockResult = !!lockBase_->TryLock();
 }
 
 AutoLock::~AutoLock()
 {
-    lockBase_.UnLock();
+    lockBase_->UnLock();
 }
