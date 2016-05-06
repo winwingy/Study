@@ -22,5 +22,6 @@ private:
     std::unique_ptr<LogFile> logFile_;
     std::unique_ptr<void, void(*)(HANDLE h)> logThread_;
     std::unique_ptr<void, void(*)(HANDLE h)> logSemaphore_;
+    bool exit_;
 };
 

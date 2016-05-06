@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WLogger", "WLogger\WLogger.vcxproj", "{034B566E-2F99-4E97-BD15-A07ADD511EA9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LogLib", "LogLib\LogLib.vcxproj", "{77CF8AEF-5291-40E9-8C95-C7BBE2F5905D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LogLibApp", "LogLibApp\LogLibApp.vcxproj", "{4E575411-2579-4A8D-9B00-0E24DBE515D6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{D1273E40-9692-4BB6-A4F9-41D2C90C766D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{034B566E-2F99-4E97-BD15-A07ADD511EA9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{034B566E-2F99-4E97-BD15-A07ADD511EA9}.Debug|Win32.Build.0 = Debug|Win32
+		{034B566E-2F99-4E97-BD15-A07ADD511EA9}.Release|Win32.ActiveCfg = Release|Win32
+		{034B566E-2F99-4E97-BD15-A07ADD511EA9}.Release|Win32.Build.0 = Release|Win32
+		{77CF8AEF-5291-40E9-8C95-C7BBE2F5905D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{77CF8AEF-5291-40E9-8C95-C7BBE2F5905D}.Debug|Win32.Build.0 = Debug|Win32
+		{77CF8AEF-5291-40E9-8C95-C7BBE2F5905D}.Release|Win32.ActiveCfg = Release|Win32
+		{77CF8AEF-5291-40E9-8C95-C7BBE2F5905D}.Release|Win32.Build.0 = Release|Win32
+		{4E575411-2579-4A8D-9B00-0E24DBE515D6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4E575411-2579-4A8D-9B00-0E24DBE515D6}.Debug|Win32.Build.0 = Debug|Win32
+		{4E575411-2579-4A8D-9B00-0E24DBE515D6}.Release|Win32.ActiveCfg = Release|Win32
+		{4E575411-2579-4A8D-9B00-0E24DBE515D6}.Release|Win32.Build.0 = Release|Win32
+		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Debug|Win32.Build.0 = Debug|Win32
+		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Release|Win32.ActiveCfg = Release|Win32
+		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

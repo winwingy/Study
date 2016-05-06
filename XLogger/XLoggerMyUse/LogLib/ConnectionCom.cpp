@@ -19,7 +19,7 @@ void ConnectionCom::Init(const TCHAR* logPath, LOG_INFO_LEVEL level,
     HRESULT hr = CoCreateInstance(__uuidof(Logger), 0, CLSCTX_LOCAL_SERVER,
                                   __uuidof(ILogger), 
                                   reinterpret_cast<void**>(&logger_));
-    if (SUCCEEDED(hr))
+    if (!SUCCEEDED(hr))
     {
         assert(0);
         return;
@@ -42,8 +42,12 @@ bool ConnectionCom::log(const TCHAR* text, int len, int* logged)
 {
     if (logger_)
     {
-        BSTR textAtl = ::SysAllocStringLen(text, len);
-        *logged = logger_->log(textAtl, len);
+//         BSTR textAtl = ::SysAllocStringLen(text, len);
+//         *logged = logger_->log(textAtl, len);
+//         ::SysFreeString(textAtl);
+
+        BSTR textAtl = ::SysAllocStringLen(L"ABCDEFGHIJK", 11);
+        *logged = logger_->log(textAtl, 11);
         ::SysFreeString(textAtl);
         return true;
     }

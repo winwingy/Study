@@ -108,12 +108,12 @@ void CTestDlg::OnBnClickedButton1()
 
     std::wstring text = L"hello World";
     BSTR textStr = ::SysAllocString(text.c_str());
-    LONG writedLen = logger->Write(&textStr, ::SysStringLen(textStr));
+    //LONG writedLen = logger->Write(&textStr, ::SysStringLen(textStr));
     ::SysFreeString(textStr);
 
     BSTR bstr(::SysAllocStringByteLen(nullptr, 100));
     LONG readed = 0;
-    readed = logger->Read(&bstr, 100);
+    //readed = logger->Read(&bstr, 100);
     ::SysFreeString(bstr);
     logger->Exit();
     logger->Release();
@@ -141,9 +141,9 @@ void CTestDlg::OnBnClickedButton2()
 void CTestDlg::OnBnClickedButton3()
 {
     // TODO:  在此添加控件通知处理程序代码
-    LogLib log;
-    log.Init(L"D:\\test\\atl.log", LOG_INFO_LEVEL_INFO, 100, 1);
-    LOG_INFO((L"Hello Log\n"));
-    LOG_INFO(L"Hello%d\n", 5);
+//     LogLib log;
+//     log.Init(L"D:\\test\\atl.log", LOG_INFO_LEVEL_INFO, 100, 1);
+//     LOG_INFO((L"Hello Log\n"));
+//     LOG_INFO(L"Hello%d\n", 5);
 
 }

@@ -6,9 +6,8 @@
 #include "AutoLock.h"
 
 
-const unsigned int ShareFileSize = 1024 * 2 * sizeof(TCHAR);
+const unsigned int ShareFileCount = 5;
 const double ReadMustPer = 0.8;
-const int ReadInterval = 2000; // ∫¡√Î
 
 void UnmapView(TCHAR* p)
 {
@@ -65,21 +64,8 @@ bool GetGUIDString(TCHAR* guidStr, int bufLen)
 
 bool ShareMem::Init()
 {
-    TCHAR guiStrA[1024] = { 0 };
-    bool ret = GetGUIDString(guiStrA, 1024);
-    if (!ret)
-    {
-        return false;
-    }
-
-    TCHAR guiStrB[1024] = { 0 };
-    bool retB = GetGUIDString(guiStrB, 1024);
-    if (!retB)
-    {
-        return false;
-    }
     memHandleA_.reset(CreateFileMapping((HANDLE)-1, nullptr, PAGE_READWRITE, 0,
-                                   ShareFileSize, L"ShareMemUse"));
+                                   ShareFileCount * sizeof(TCHAR), L"ShareMemUseA"));
     assert(memHandleA_.get() != INVALID_HANDLE_VALUE);
     mapPtrA_.reset((TCHAR*)MapViewOfFile(memHandleA_.get(), 
                                    FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0), UnmapView);
@@ -87,7 +73,7 @@ bool ShareMem::Init()
     wBeg_ = 0;
     wEnd_ = 0;
     memHandleB_.reset(CreateFileMapping((HANDLE)-1, nullptr, PAGE_READWRITE, 0,
-                                   ShareFileSize, guiStrB));
+        ShareFileCount * sizeof(TCHAR), L"ShareMemUseB"));
     assert(memHandleB_.get() != INVALID_HANDLE_VALUE);
     mapPtrB_.reset((TCHAR*)MapViewOfFile(memHandleB_.get(),
         FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0), UnmapView);
@@ -125,7 +111,7 @@ void ShareMem::ChangeWriteReadPtr()
 
 }
 
-bool ShareMem::Write(const TCHAR* writeText, int writeLen, int* writedLen)//0 1 2 3 4 5 6
+bool ShareMem::Write(const TCHAR* writeText, int writeLen, int* writedLenFinish)//0 1 2 3 4 5 6
 {
     int writeTextBeg = 0;
     if (writeLen <= 0)
@@ -136,20 +122,13 @@ bool ShareMem::Write(const TCHAR* writeText, int writeLen, int* writedLen)//0 1 
     AutoLock w(*dataLockWrite_);
     do
     {
-        if (static_cast<float>(wEnd_ + writeLen) >=
-            (ShareFileSize - 1) * ReadMustPer)
-        {
-            if (readEvent_)
-                readEvent_(true, static_cast<float>(wEnd_) / ShareFileSize);
-        }
-
         int writeWill = 0;
         do
         {
-            writeWill = writeLen;
-            if ((writeLen + wEnd_) > (ShareFileSize - 1))
+            writeWill = writeLen;// a b c
+            if ((writeLen + wEnd_) > ShareFileCount)
             {
-                writeWill = (ShareFileSize - 1) - wEnd_;
+                writeWill = ShareFileCount - wEnd_;
             }
             if (writeWill <= 0)
             {
@@ -169,7 +148,7 @@ bool ShareMem::Write(const TCHAR* writeText, int writeLen, int* writedLen)//0 1 
                     if (readEvent_)
                     {
                         readEvent_(true, 
-                                   static_cast<float>(wEnd_) / ShareFileSize);
+                                   static_cast<float>(wEnd_) / ShareFileCount);
                     }
                     Sleep(100);
                 }
@@ -177,11 +156,15 @@ bool ShareMem::Write(const TCHAR* writeText, int writeLen, int* writedLen)//0 1 
             }
         } while (writeWill < 0);
 
-        memcpy(write_.get() + wEnd_, writeText + writeTextBeg, writeWill * sizeof(TCHAR));
+        memcpy(write_.get() + wEnd_, writeText + writeTextBeg,
+               writeWill * sizeof(TCHAR));
         wEnd_ += writeWill;
         writeTextBeg += writeWill;
         writeLen -= writeWill;
-        *writedLen += writeWill;
+        *writedLenFinish += writeWill;
+        if (readEvent_)
+            readEvent_(true, static_cast<float>(wEnd_) / ShareFileCount);
+
     } while (writeLen > 0);
     return true;
 }
@@ -197,7 +180,7 @@ bool ShareMem::Read(TCHAR* buf, int bufLen, int* readedLen)
     int readWill = 0;
     do 
     {
-        readWill = bufLen;
+        readWill = bufLen;// a  b  c
         if ((rEnd_ - rBeg_) < bufLen)
         {
             readWill = rEnd_ - rBeg_;

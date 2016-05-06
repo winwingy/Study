@@ -8,8 +8,8 @@ LogFile::LogFile()
     : isInit_(false)
     , fp_(nullptr, [](FILE* p){ fclose(p); })
     , logPath_()
-    , fileSize_(FileSize)
-    , fileCount_(FileCount)
+    , fileSize_(LogFileSize)
+    , fileCount_(LogFileCount)
 {
 }
 
@@ -36,6 +36,11 @@ void LogFile::Init(const TCHAR* logPath, LOG_INFO_LEVEL level,
     fp_.reset(fp);
 }
 
+void LogFile::Exit()
+{
+    fp_.reset();
+}
+
 bool LogFile::WriteToFile(const TCHAR* text, int len, int* writted)
 {
     if (!isInit_)
@@ -48,6 +53,8 @@ bool LogFile::WriteToFile(const TCHAR* text, int len, int* writted)
         return true;
     }
     *writted = fwrite(text, sizeof(TCHAR), len, fp_.get());
+    std::wstring textdub(text, len);
+    OutputDebugString(textdub.c_str());
     if (*writted <= 0)
     {
         return false;

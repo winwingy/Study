@@ -22,12 +22,14 @@ LoggerImple::LoggerImple()
     , logFile_(new LogFile())
     , logThread_(nullptr, HANDLEClose)
     , logSemaphore_(nullptr, HANDLEClose)
+    , exit_(false)
 {
 
 }
 
 LoggerImple::~LoggerImple()
 {
+
 }
 
 unsigned __stdcall LoggerImple::WriteLogThread(void* param)
@@ -57,8 +59,12 @@ STDMETHODIMP LoggerImple::InitLog(BSTR logPath, LONG level,
 
 STDMETHODIMP LoggerImple::Exit()
 {
+    exit_ = true;
+    ReleaseSemaphore(logSemaphore_.get(), 3, nullptr);
+    WaitForSingleObject(logThread_.get(), INFINITE);
     shareMem_->TryExit();
     shareMem_->Exit();
+    logFile_->Exit();
     return S_OK;
 }
 
@@ -71,18 +77,27 @@ STDMETHODIMP LoggerImple::log(BSTR text, LONG len, LONG* logged)
 void LoggerImple::WriteLogProc()
 {
     while (true)
-    {
+    {  
         WaitForSingleObject(logSemaphore_.get(), INFINITE);
-        std::unique_ptr<TCHAR, void(*)(void*)> text(
-            new TCHAR[1024], [](void* p){delete[] p; });
         int readed = 0;
         do 
         {
             Sleep(2000);
-            shareMem_->Read(text.get(), 1024, &readed);
-            int writted = 0;
-            bool ret = logFile_->WriteToFile(text.get(), readed, &writted);
+            readed = 0;
+            const int len = 1024;
+            std::unique_ptr<TCHAR, void(*)(void*)> text(
+                new TCHAR[len], [](void* p){delete[] p; });
+            memset(text.get(), 0, len * sizeof(TCHAR));
+            if (shareMem_->Read(text.get(), len, &readed))
+            {
+                int writted = 0;
+                bool ret = logFile_->WriteToFile(text.get(), readed, &writted);
+            }
         } while (readed > 0);
+        if (exit_)
+        {
+            break;
+        }
     }
 }
 
