@@ -6,7 +6,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Fri May 06 17:57:00 2016
+/* at Wed May 11 16:57:50 2016
  */
 /* Compiler settings for WLogger.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 

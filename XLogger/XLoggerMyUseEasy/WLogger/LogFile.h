@@ -17,11 +17,12 @@ public:
     void Exit();
 
     bool WriteToFile(std::vector<tstring>* datas);
+    bool WriteToFile(const TCHAR* text, int lenth);
 
 private:
     std::unique_ptr<FILE, void(*)(FILE*)> fp_;
     bool isInit_;
-    std::wstring logPath_;
+    tstring logPath_;
     int fileSize_;
     int fileCount_;
 };

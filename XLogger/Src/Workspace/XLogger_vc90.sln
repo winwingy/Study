@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XLogger", "XLogger_vc90.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "..\test\test.vcxproj", "{CC81CA56-7981-4B64-A07E-F2D9A27F46F2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XFile", "..\XFile\XFile.vcxproj", "{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -29,6 +31,14 @@ Global
 		{CC81CA56-7981-4B64-A07E-F2D9A27F46F2}.Release|Win32.ActiveCfg = Release|Win32
 		{CC81CA56-7981-4B64-A07E-F2D9A27F46F2}.Release|Win32.Build.0 = Release|Win32
 		{CC81CA56-7981-4B64-A07E-F2D9A27F46F2}.Release|x64.ActiveCfg = Release|Win32
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Debug|Win32.Build.0 = Debug|Win32
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Debug|x64.ActiveCfg = Debug|x64
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Debug|x64.Build.0 = Debug|x64
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Release|Win32.ActiveCfg = Release|Win32
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Release|Win32.Build.0 = Release|Win32
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Release|x64.ActiveCfg = Release|x64
+		{02738B48-12E8-4EEA-9DF1-B53350E9FD2E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

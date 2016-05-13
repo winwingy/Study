@@ -2,11 +2,15 @@
 #include "LoggerImple.h"
 
 #include <assert.h>
+#include <comutil.h>
 
 #include "LogFile.h"
 #include "AutoLock.h"
+#include "../ShareWriter/ShareWriter.h"
 
 #pragma comment(lib, "user32.lib")
+#pragma comment(lib, "comsuppw.lib")
+#pragma comment(lib, "ShareWriter.lib")
 
 namespace
 {
@@ -22,6 +26,20 @@ namespace
             p != nullptr)
             CloseHandle(p);
     }
+
+
+    tstring BSTR2TString(BSTR bs)
+    {
+        tstring str;
+#ifdef _UNICODE
+        str.assign(bs);
+#else
+        char* tc = _com_util::ConvertBSTRToString(bs);
+        str.assign(tc);
+        delete[] tc;
+#endif
+        return str;
+    }
 }
 
 
@@ -34,13 +52,14 @@ LoggerImple::LoggerImple()
     , mapView_(nullptr, UnmapView)
     , datas_(new std::vector<tstring>())
     , lockData_(new AutoLockBase())
+    , shareWriter_(new ShareWriter())
 {
 
 }
 
 LoggerImple::~LoggerImple()
 {
-
+    int a = 5;
 }
 
 unsigned __stdcall LoggerImple::WriteLogThread(void* param)
@@ -48,7 +67,7 @@ unsigned __stdcall LoggerImple::WriteLogThread(void* param)
     LoggerImple* pThis = reinterpret_cast<LoggerImple*>(param);
     if (pThis)
     {
-        pThis->WriteLogProc();
+        pThis->WriteLogProcShareMem();
     }
     return 0;
 }
@@ -57,15 +76,17 @@ STDMETHODIMP LoggerImple::InitLog(BSTR logPath, LONG level,
                                   LONG fileSize, LONG fileCount)
 {
     HANDLE share = OpenFileMapping(FILE_MAP_READ | FILE_MAP_WRITE,
-                                   FALSE, L"ShareMemUseEasy");
+                                   FALSE, _T("ShareMemUseEasy"));
     DWORD err = GetLastError();
     memHandle_.reset(share);
     assert(memHandle_.get() != INVALID_HANDLE_VALUE);
     mapView_.reset((TCHAR*)MapViewOfFile(memHandle_.get(),
         FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0), UnmapView);
 
-    logFile_->Init(logPath, static_cast<LOG_INFO_LEVEL>(level),
-                   fileSize, fileCount);
+    logFile_->Init(BSTR2TString(logPath).c_str(),
+                   static_cast<LOG_INFO_LEVEL>(level),
+                   fileSize, fileCount); 
+    shareWriter_->Create(_T("LogShareMem"));
     logThread_.reset((HANDLE)_beginthreadex(
         nullptr, 0, WriteLogThread, this, 0, nullptr));
     logSemaphore_.reset(CreateSemaphore(0, 0, 10000, nullptr));
@@ -83,7 +104,7 @@ STDMETHODIMP LoggerImple::Exit()
     return S_OK;
 }
 
-STDMETHODIMP LoggerImple::log(BSTR text, LONG len, LONG* logged)
+STDMETHODIMP LoggerImple::log(LONG len, LONG* logged)
 {
     tstring item(mapView_.get(), mapView_.get() + len);
     {
@@ -102,11 +123,31 @@ void LoggerImple::WriteLogProc()
         std::vector<tstring> datas;
         {
             AutoLock l(*lockData_);
-            datas = *datas_;
-            datas_->empty();
+            datas.assign(datas_->begin(), datas_->end());
+            datas_->clear();
         }
         bool ret = logFile_->WriteToFile(&datas);
         if (exit_)
+        {
+            break;
+        }
+        //Sleep(500);
+    }
+}
+
+void LoggerImple::WriteLogProcShareMem()
+{
+    std::unique_ptr<TCHAR, void(*)(void*)> szBuf
+        (new TCHAR[ItemBuffSize], [](void*p){ delete [] p; });
+    while (true)
+    {
+        int getted = 0;
+        bool readRet = shareWriter_->Read(szBuf.get(), ItemBuffSize, &getted);
+        if (readRet && getted)
+        {
+            bool ret = logFile_->WriteToFile(szBuf.get(), getted);
+        }
+        if (exit_ && !readRet)
         {
             break;
         }

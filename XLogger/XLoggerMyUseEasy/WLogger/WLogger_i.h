@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Fri May 06 17:57:00 2016
+/* at Wed May 11 16:57:50 2016
  */
 /* Compiler settings for WLogger.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -97,7 +97,6 @@ EXTERN_C const IID IID_ILogger;
             /* [in] */ LONG fileCount) = 0;
         
         virtual /* [id] */ HRESULT STDMETHODCALLTYPE log( 
-            /* [in] */ BSTR text,
             /* [in] */ LONG len,
             /* [retval][out] */ LONG *logged) = 0;
         
@@ -171,7 +170,6 @@ EXTERN_C const IID IID_ILogger;
         
         /* [id] */ HRESULT ( STDMETHODCALLTYPE *log )( 
             ILogger * This,
-            /* [in] */ BSTR text,
             /* [in] */ LONG len,
             /* [retval][out] */ LONG *logged);
         
@@ -217,8 +215,8 @@ EXTERN_C const IID IID_ILogger;
 #define ILogger_InitLog(This,logPath,level,fileSize,fileCount)	\
     ( (This)->lpVtbl -> InitLog(This,logPath,level,fileSize,fileCount) ) 
 
-#define ILogger_log(This,text,len,logged)	\
-    ( (This)->lpVtbl -> log(This,text,len,logged) ) 
+#define ILogger_log(This,len,logged)	\
+    ( (This)->lpVtbl -> log(This,len,logged) ) 
 
 #endif /* COBJMACROS */
 

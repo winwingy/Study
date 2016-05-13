@@ -23,7 +23,7 @@ public:
 private:
     void FormatLog(const TCHAR* format, ...);
     bool isInit_;
-    std::wstring logPath_;
+    tstring logPath_;
     LOG_INFO_LEVEL level_;
     int fileSize_;
     int fileCount_;

@@ -141,6 +141,7 @@ STDMETHODIMP CLogFactory::Create(LONG FileType,
 								 BSTR* LogName,
 								 BSTR* XFile)
 {
+    //MessageBox(NULL, _T("CLogFactory::Create"), _T("CLogFactory::Create"), MB_OK);
 	ATLASSERT(NULL != AppName);
 	ATLASSERT(NULL != Configue);
 	ATLASSERT(NULL != Section);

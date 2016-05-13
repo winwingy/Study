@@ -50,7 +50,7 @@ END_COM_MAP()
 
     STDMETHOD(Exit)(); 
     STDMETHOD(InitLog)(BSTR logPath, LONG level, LONG fileSize, LONG fileCount);
-    STDMETHOD(log)(BSTR text, LONG len, LONG* logged);
+    STDMETHOD(log)(LONG len, LONG* logged);
 private:
     std::unique_ptr<LoggerImple> impl_;
 };

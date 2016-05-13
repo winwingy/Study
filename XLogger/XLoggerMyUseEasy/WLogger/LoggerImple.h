@@ -6,6 +6,7 @@
 using namespace ATL;
 class LogFile;
 class AutoLockBase;
+class ShareWriter;
 class LoggerImple
 {
 public:
@@ -14,10 +15,11 @@ public:
 
     STDMETHOD(InitLog)(BSTR logPath, LONG level, LONG fileSize, LONG fileCount);
     STDMETHOD(Exit)();
-    STDMETHODIMP log(BSTR text, LONG len, LONG* logged);
+    STDMETHODIMP log(LONG len, LONG* logged);
 
 private:
     void WriteLogProc();
+    void WriteLogProcShareMem();
     static unsigned __stdcall WriteLogThread(void* param);
     std::unique_ptr<LogFile> logFile_;
     std::unique_ptr<void, void(*)(HANDLE h)> logThread_;
@@ -26,6 +28,7 @@ private:
     std::unique_ptr<void, void(*)(void*)> memHandle_;
     std::shared_ptr<TCHAR> mapView_;
     std::vector<tstring>* datas_;
-    AutoLockBase* lockData_;
+    std::unique_ptr<AutoLockBase> lockData_;
+    std::unique_ptr<ShareWriter> shareWriter_;
 };
 

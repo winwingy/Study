@@ -1,5 +1,7 @@
 #pragma once
 #include <tchar.h>
+#include <string>
+#include <sstream>
 
 #define LogFileSize 5 * 1024
 #define LogFileCount 1

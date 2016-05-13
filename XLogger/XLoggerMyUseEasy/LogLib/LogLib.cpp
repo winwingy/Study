@@ -38,8 +38,8 @@ void LogLib::Init(const TCHAR* logPath, LOG_INFO_LEVEL level,
 
 void LogLib::Exit()
 {
+    impl_->Exit();  
     impl_->ClearObserver();
-    impl_->Exit();
     if (log_)
     {
         delete log_;

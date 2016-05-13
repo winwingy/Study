@@ -3,6 +3,13 @@
 #include <assert.h>
 #include "../LogLib/LogLibRef.h"
 
+#ifdef _UNICODE
+#define OPEN_CCS L",ccs=UNICODE"
+#else 
+#define OPEN_CCS ""
+#endif // _UNICODE
+
+
 
 LogFile::LogFile()
     : isInit_(false)
@@ -27,7 +34,18 @@ void LogFile::Init(const TCHAR* logPath, LOG_INFO_LEVEL level,
     isInit_ = true;
 
     FILE* fp = nullptr;
-    errno_t err = _tfopen_s(&fp, logPath_.c_str(), _T("a,ccs=UNICODE"));
+    errno_t err = _tfopen_s(&fp, logPath_.c_str(),
+                            tstring(_T("r") + tstring(OPEN_CCS)).c_str());
+    if (err != 0)
+        err = _tfopen_s(&fp, logPath_.c_str(), 
+        tstring(_T("w") + tstring(OPEN_CCS)).c_str());
+    else
+    {
+        fclose(fp);
+        err = _tfopen_s(&fp, logPath_.c_str(),
+                        tstring(_T("a") + tstring(OPEN_CCS)).c_str());
+    }
+
     if (0 != err)
     {
        // assert(0);
@@ -50,15 +68,25 @@ bool LogFile::WriteToFile(std::vector<tstring>* datas)
 
     for (auto& item : *datas)
     {
-        const WCHAR* p = item.c_str();
-        FILE* fp = nullptr;
-        errno_t err = _tfopen_s(&fp, L"D:\\test\\logfile.txt", _T("a,ccs=UNICODE"));
-        int writted = fwrite(item.c_str(), 2,
-                             item.size(), fp);
-        fclose(fp);
-        OutputDebugString(item.c_str());
+        int writted = fwrite(item.c_str(), sizeof(TCHAR),
+                             item.size(), fp_.get());
+        //OutputDebugString(item.c_str());
         assert(writted > 0);
     }
+    fflush(fp_.get());
+    return true;
+}
+
+bool LogFile::WriteToFile(const TCHAR* text, int lenth)
+{
+    if (!isInit_)
+    {
+        return false;
+    }
+    int writted = fwrite(text, sizeof(TCHAR),
+                         lenth, fp_.get());
+        //OutputDebugString(item.c_str());
+    assert(writted > 0);
     fflush(fp_.get());
     return true;
 }

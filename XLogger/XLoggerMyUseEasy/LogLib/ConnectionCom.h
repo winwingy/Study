@@ -3,6 +3,7 @@
 #include <memory>
 #include "LogLibRef.h"
 struct ILogger;
+class ShareWriter;
 class ConnectionCom : public LogLibObserver
 {
 public:
@@ -19,5 +20,6 @@ private:
     CComPtr<ILogger> logger_;
     std::unique_ptr<void, void(*)(void*)> memHandle_;
     std::shared_ptr<TCHAR> write_;
+    std::unique_ptr<ShareWriter> shareWriter_;
 };
 

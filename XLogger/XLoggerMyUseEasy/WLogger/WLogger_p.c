@@ -4,7 +4,7 @@
 
 
  /* File created by MIDL compiler version 8.00.0603 */
-/* at Fri May 06 17:57:00 2016
+/* at Wed May 11 16:57:50 2016
  */
 /* Compiler settings for WLogger.idl:
     Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.00.0603 
@@ -50,7 +50,7 @@
 #include "WLogger_i.h"
 
 #define TYPE_FORMAT_STRING_SIZE   43                                
-#define PROC_FORMAT_STRING_SIZE   133                               
+#define PROC_FORMAT_STRING_SIZE   127                               
 #define EXPR_FORMAT_STRING_SIZE   1                                 
 #define TRANSMIT_AS_TABLE_SIZE    0            
 #define WIRE_MARSHAL_TABLE_SIZE   1            
@@ -190,42 +190,36 @@ static const WLogger_MIDL_PROC_FORMAT_STRING WLogger__MIDL_ProcFormatString =
 			0x6c,		/* Old Flags:  object, Oi2 */
 /* 86 */	NdrFcLong( 0x0 ),	/* 0 */
 /* 90 */	NdrFcShort( 0x9 ),	/* 9 */
-/* 92 */	NdrFcShort( 0x14 ),	/* x86 Stack size/offset = 20 */
+/* 92 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
 /* 94 */	NdrFcShort( 0x8 ),	/* 8 */
 /* 96 */	NdrFcShort( 0x24 ),	/* 36 */
-/* 98 */	0x46,		/* Oi2 Flags:  clt must size, has return, has ext, */
-			0x4,		/* 4 */
+/* 98 */	0x44,		/* Oi2 Flags:  has return, has ext, */
+			0x3,		/* 3 */
 /* 100 */	0x8,		/* 8 */
-			0x5,		/* Ext Flags:  new corr desc, srv corr check, */
+			0x1,		/* Ext Flags:  new corr desc, */
 /* 102 */	NdrFcShort( 0x0 ),	/* 0 */
-/* 104 */	NdrFcShort( 0x1 ),	/* 1 */
+/* 104 */	NdrFcShort( 0x0 ),	/* 0 */
 /* 106 */	NdrFcShort( 0x0 ),	/* 0 */
-
-	/* Parameter text */
-
-/* 108 */	NdrFcShort( 0x8b ),	/* Flags:  must size, must free, in, by val, */
-/* 110 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
-/* 112 */	NdrFcShort( 0x1c ),	/* Type Offset=28 */
 
 	/* Parameter len */
 
-/* 114 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
-/* 116 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
-/* 118 */	0x8,		/* FC_LONG */
+/* 108 */	NdrFcShort( 0x48 ),	/* Flags:  in, base type, */
+/* 110 */	NdrFcShort( 0x4 ),	/* x86 Stack size/offset = 4 */
+/* 112 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 	/* Parameter logged */
 
-/* 120 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
-/* 122 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
-/* 124 */	0x8,		/* FC_LONG */
+/* 114 */	NdrFcShort( 0x2150 ),	/* Flags:  out, base type, simple ref, srv alloc size=8 */
+/* 116 */	NdrFcShort( 0x8 ),	/* x86 Stack size/offset = 8 */
+/* 118 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 	/* Return value */
 
-/* 126 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
-/* 128 */	NdrFcShort( 0x10 ),	/* x86 Stack size/offset = 16 */
-/* 130 */	0x8,		/* FC_LONG */
+/* 120 */	NdrFcShort( 0x70 ),	/* Flags:  out, return, base type, */
+/* 122 */	NdrFcShort( 0xc ),	/* x86 Stack size/offset = 12 */
+/* 124 */	0x8,		/* FC_LONG */
 			0x0,		/* 0 */
 
 			0x0

@@ -94,6 +94,7 @@ extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/,
 	CString FileVersion = GetFileVersion();
 	LOGGER_WRITE(_T("Æô¶¯(Compilation:") << __DATE__ << _T(" ") << __TIME__ 
 		<< _T(", Version:") << FileVersion.GetBuffer() <<  _T(")")); 
+    MessageBox(nullptr, _T("XFile"), _T("XFile"), MB_OK);
 	g_oFileManager.CreateThread();
 	CStateMonitor Monitor; Monitor.InitMonitor();
 	int iRetVal = _AtlModule.WinMain(nShowCmd);

@@ -31,8 +31,8 @@ STDMETHODIMP CLogger::InitLog(BSTR logPath, LONG level,
 }
 
 
-STDMETHODIMP CLogger::log(BSTR text, LONG len, LONG* logged)
+STDMETHODIMP CLogger::log(LONG len, LONG* logged)
 {
     // TODO:  在此添加实现代码
-    return impl_->log(text, len, logged);
+    return impl_->log(len, logged);
 }

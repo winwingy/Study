@@ -26,7 +26,7 @@ CWLoggerModule _AtlModule;
 extern "C" int WINAPI _tWinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, 
 								LPTSTR /*lpCmdLine*/, int nShowCmd)
 {
-    MessageBox(nullptr, L"ssEasy", L"ssEasy", MB_OK);
+    MessageBox(nullptr, _T("ssEasy"), _T("ssEasy"), MB_OK);
 	return _AtlModule.WinMain(nShowCmd);
 }
 

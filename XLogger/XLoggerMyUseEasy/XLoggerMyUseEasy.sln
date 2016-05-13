@@ -11,6 +11,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LogLibApp", "LogLibApp\LogL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{D1273E40-9692-4BB6-A4F9-41D2C90C766D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectOldLog", "DirectOldLog\DirectOldLog.vcxproj", "{E9EA896B-B993-44A9-8224-E145AB5EE599}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShareWriter", "ShareWriter\ShareWriter.vcxproj", "{9E406377-88A3-44A7-A523-22E3C36494C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,6 +37,14 @@ Global
 		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Debug|Win32.Build.0 = Debug|Win32
 		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Release|Win32.ActiveCfg = Release|Win32
 		{D1273E40-9692-4BB6-A4F9-41D2C90C766D}.Release|Win32.Build.0 = Release|Win32
+		{E9EA896B-B993-44A9-8224-E145AB5EE599}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E9EA896B-B993-44A9-8224-E145AB5EE599}.Debug|Win32.Build.0 = Debug|Win32
+		{E9EA896B-B993-44A9-8224-E145AB5EE599}.Release|Win32.ActiveCfg = Release|Win32
+		{E9EA896B-B993-44A9-8224-E145AB5EE599}.Release|Win32.Build.0 = Release|Win32
+		{9E406377-88A3-44A7-A523-22E3C36494C5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9E406377-88A3-44A7-A523-22E3C36494C5}.Debug|Win32.Build.0 = Debug|Win32
+		{9E406377-88A3-44A7-A523-22E3C36494C5}.Release|Win32.ActiveCfg = Release|Win32
+		{9E406377-88A3-44A7-A523-22E3C36494C5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
