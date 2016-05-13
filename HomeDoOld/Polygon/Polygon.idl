@@ -1,0 +1,57 @@
+// Polygon.idl : Polygon 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(Polygon.tlb)和封送处理代码。
+
+#include "olectl.h"
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(B471291B-3E1F-4CE9-A482-D222005821FB),
+	dual,
+	nonextensible,
+	helpstring("IPolyCtrl 接口"),
+	pointer_default(unique)
+]
+interface IPolyCtrl : IDispatch{
+	[propput, bindable, requestedit, id(DISPID_FILLCOLOR)]
+	HRESULT FillColor([in]OLE_COLOR clr);
+	[propget, bindable, requestedit, id(DISPID_FILLCOLOR)]
+	HRESULT FillColor([out, retval]OLE_COLOR* pclr);
+	[propget, id(1), helpstring("属性 Sides")] HRESULT Sides([out, retval] SHORT* pVal);
+	[propput, id(1), helpstring("属性 Sides")] HRESULT Sides([in] SHORT newVal);
+};
+
+[
+	uuid(522C9CF6-619F-47C6-A428-6E51CC5B6A4E),
+	version(1.0),
+	helpstring("Polygon 1.0 类型库")
+]
+library PolygonLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(FAD52422-E0F7-47F3-92F6-07452A8AD44D),
+		helpstring("_IPolyCtrlEvents 接口")
+	]
+	dispinterface _IPolyCtrlEvents
+	{
+		properties:
+		methods:
+			[id(1), helpstring("方法ClickIn")] void ClickIn([in] LONG x, [in] LONG y);
+			[id(2), helpstring("方法ClickOut")] void ClickOut([in] LONG x, [in] LONG y);
+	};
+	[
+		uuid(CAC853FA-32F8-49ED-BC3F-A77141A813A6),
+		control,
+		helpstring("PolyCtrl Class")
+	]
+	coclass PolyCtrl
+	{
+		[default] interface IPolyCtrl;
+		[default, source] dispinterface _IPolyCtrlEvents;
+	};
+};

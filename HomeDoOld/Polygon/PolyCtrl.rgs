@@ -1,0 +1,36 @@
+HKCR
+{
+	Polygon.PolyCtrl.1 = s 'PolyCtrl Class'
+	{
+		CLSID = s '{CAC853FA-32F8-49ED-BC3F-A77141A813A6}'
+		'Insertable'
+	}
+	Polygon.PolyCtrl = s 'PolyCtrl Class'
+	{
+		CLSID = s '{CAC853FA-32F8-49ED-BC3F-A77141A813A6}'
+		CurVer = s 'Polygon.PolyCtrl.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {CAC853FA-32F8-49ED-BC3F-A77141A813A6} = s 'PolyCtrl Class'
+		{
+			ProgID = s 'Polygon.PolyCtrl.1'
+			VersionIndependentProgID = s 'Polygon.PolyCtrl'
+			ForceRemove 'Programmable'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			val AppID = s '%APPID%'
+			ForceRemove 'Control'
+			ForceRemove 'Insertable'
+			ForceRemove 'ToolboxBitmap32' = s '%MODULE%, 102'
+			'MiscStatus' = s '0'
+			{
+			    '1' = s '%OLEMISC%'
+			}
+			'TypeLib' = s '{522C9CF6-619F-47C6-A428-6E51CC5B6A4E}'
+			'Version' = s '1.0'
+		}
+	}
+}
