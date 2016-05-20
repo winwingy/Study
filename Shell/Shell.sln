@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookIMEInput", "HookIMEInput\HookIMEInput.vcxproj", "{1849642A-6788-40A3-AC2C-780F7C6D15BD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookIMEInputUse", "HookIMEInputUse\HookIMEInputUse.vcxproj", "{74416F05-6339-49AA-8F59-3781EA001DCB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectFolderAndFile", "DetectFolderAndFile\DetectFolderAndFile.vcxproj", "{34C4C9A5-56C5-465F-A5FD-AF7B3273C12A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectWhenWndCreate", "DetectWhenWndCreate\DetectWhenWndCreate.vcxproj", "{71E363A7-0625-469B-AE41-48AEE7B0D5EC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectWhenWndCreate2", "DetectWhenWndCreate2\DetectWhenWndCreate2.vcxproj", "{5BBCF86D-7F26-4755-9FFD-8817AAEB89A2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DetectWhenWndCreateDLL", "DetectWhenWndCreateDLL\DetectWhenWndCreateDLL.vcxproj", "{D69A2742-6257-4563-8D9E-2FD6F29B0CB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1849642A-6788-40A3-AC2C-780F7C6D15BD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1849642A-6788-40A3-AC2C-780F7C6D15BD}.Debug|Win32.Build.0 = Debug|Win32
+		{1849642A-6788-40A3-AC2C-780F7C6D15BD}.Release|Win32.ActiveCfg = Release|Win32
+		{1849642A-6788-40A3-AC2C-780F7C6D15BD}.Release|Win32.Build.0 = Release|Win32
+		{74416F05-6339-49AA-8F59-3781EA001DCB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{74416F05-6339-49AA-8F59-3781EA001DCB}.Debug|Win32.Build.0 = Debug|Win32
+		{74416F05-6339-49AA-8F59-3781EA001DCB}.Release|Win32.ActiveCfg = Release|Win32
+		{74416F05-6339-49AA-8F59-3781EA001DCB}.Release|Win32.Build.0 = Release|Win32
+		{34C4C9A5-56C5-465F-A5FD-AF7B3273C12A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{34C4C9A5-56C5-465F-A5FD-AF7B3273C12A}.Debug|Win32.Build.0 = Debug|Win32
+		{34C4C9A5-56C5-465F-A5FD-AF7B3273C12A}.Release|Win32.ActiveCfg = Release|Win32
+		{34C4C9A5-56C5-465F-A5FD-AF7B3273C12A}.Release|Win32.Build.0 = Release|Win32
+		{71E363A7-0625-469B-AE41-48AEE7B0D5EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{71E363A7-0625-469B-AE41-48AEE7B0D5EC}.Debug|Win32.Build.0 = Debug|Win32
+		{71E363A7-0625-469B-AE41-48AEE7B0D5EC}.Release|Win32.ActiveCfg = Release|Win32
+		{71E363A7-0625-469B-AE41-48AEE7B0D5EC}.Release|Win32.Build.0 = Release|Win32
+		{5BBCF86D-7F26-4755-9FFD-8817AAEB89A2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5BBCF86D-7F26-4755-9FFD-8817AAEB89A2}.Debug|Win32.Build.0 = Debug|Win32
+		{5BBCF86D-7F26-4755-9FFD-8817AAEB89A2}.Release|Win32.ActiveCfg = Release|Win32
+		{5BBCF86D-7F26-4755-9FFD-8817AAEB89A2}.Release|Win32.Build.0 = Release|Win32
+		{D69A2742-6257-4563-8D9E-2FD6F29B0CB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D69A2742-6257-4563-8D9E-2FD6F29B0CB7}.Debug|Win32.Build.0 = Debug|Win32
+		{D69A2742-6257-4563-8D9E-2FD6F29B0CB7}.Release|Win32.ActiveCfg = Release|Win32
+		{D69A2742-6257-4563-8D9E-2FD6F29B0CB7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

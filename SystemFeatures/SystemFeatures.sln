@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PreReadDisk", "PreReadDisk\PreReadDisk.vcxproj", "{8F22504A-47E1-40FA-AD47-A0F6C9C6EF67}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualDisk", "VirtualDisk\VirtualDisk.vcxproj", "{63B4A535-2B04-43B3-B25B-E80BF19AA1FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F22504A-47E1-40FA-AD47-A0F6C9C6EF67}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8F22504A-47E1-40FA-AD47-A0F6C9C6EF67}.Debug|Win32.Build.0 = Debug|Win32
+		{8F22504A-47E1-40FA-AD47-A0F6C9C6EF67}.Release|Win32.ActiveCfg = Release|Win32
+		{8F22504A-47E1-40FA-AD47-A0F6C9C6EF67}.Release|Win32.Build.0 = Release|Win32
+		{63B4A535-2B04-43B3-B25B-E80BF19AA1FA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{63B4A535-2B04-43B3-B25B-E80BF19AA1FA}.Debug|Win32.Build.0 = Debug|Win32
+		{63B4A535-2B04-43B3-B25B-E80BF19AA1FA}.Release|Win32.ActiveCfg = Release|Win32
+		{63B4A535-2B04-43B3-B25B-E80BF19AA1FA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
