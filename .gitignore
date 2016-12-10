@@ -33,6 +33,8 @@
 *.opensdf
 *.sdf
 */Debug/
+*/*/*.aps
+*/*/*/*.aps
 */*/Debug/
 */*/*/Debug/
 */Release/
