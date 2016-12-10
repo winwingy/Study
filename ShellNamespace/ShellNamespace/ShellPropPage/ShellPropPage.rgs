@@ -1,0 +1,82 @@
+
+HKCR
+{
+
+    WMFProp.PropPage.1 = s 'PropPage Class'
+    {
+
+        CLSID = s '{0D0E3558-8011-11D2-8CDB-505850C10000}'
+
+    }
+    WMFProp.PropPage = s 'PropPage Class'
+    {
+
+        CLSID = s '{0D0E3558-8011-11D2-8CDB-505850C10000}'
+
+            CurVer = s 'WMFProp.PropPage.1'
+
+    }
+    NoRemove CLSID
+    {
+        ForceRemove{ 0D0E3558 - 8011 - 11D2 - 8CDB - 505850C10000 } = s 'PropPage Class'
+        {
+            ProgID = s 'WMFProp.PropPage.1'
+
+                VersionIndependentProgID = s 'WMFProp.PropPage'
+
+                ForceRemove 'Programmable'
+
+                InprocServer32 = s '%MODULE%'
+            {
+
+                val ThreadingModel = s 'Apartment'
+
+            }
+
+            'TypeLib' = s '{0D0E354B-8011-11D2-8CDB-505850C10000}'
+
+        }
+
+    }
+
+        WinMetafile
+    {
+
+        Shellex
+
+        {
+
+            PropertySheetHandlers
+
+            {
+
+                { 0D0E3558 - 8011 - 11D2 - 8CDB - 505850C10000 }
+
+            }
+
+        }
+
+    }
+
+    EnhMetafile
+
+                {
+
+                    Shellex
+
+                    {
+
+                        PropertySheetHandlers
+
+                        {
+
+                            { 0D0E3558 - 8011 - 11D2 - 8CDB - 505850C10000 }
+
+                        }
+
+                    }
+
+                }
+
+}
+

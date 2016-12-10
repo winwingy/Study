@@ -1,0 +1,81 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove  %CLSID% = s '%DESCRIPTION%'
+		{
+			val InfoTip = s '%INFOTIP%'
+			InProcServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			DefaultIcon = s '%MODULE%'  
+			ShellFolder
+			{
+				val Attributes = b '400000A0'
+			} 
+			ShellEx 
+			{
+				PropertySheetHandlers
+				{
+					%CLSID%
+				}
+// 				ForceRemove ContextMenuHandlers
+// 				{
+// 					ForceRemove %CLSID%
+// 				}
+//				MayChangeDefaultMenu
+			}
+		}
+	}
+}
+HKLM 
+{
+	NoRemove Software
+	{
+		NoRemove Microsoft
+		{
+			NoRemove Windows
+			{
+				NoRemove CurrentVersion
+				{
+					NoRemove Explorer
+					{
+						NoRemove Desktop
+						{
+							NoRemove NameSpace
+							{
+								ForceRemove  %CLSID% = s '%DESCRIPTION%'
+								{
+									 val 'Removal Message' = s 'É¾³ý'
+								}
+							}
+						}
+						NoRemove MyComputer
+						{
+							NoRemove NameSpace
+							{
+								ForceRemove  %CLSID% = s '%DESCRIPTION%'
+							}
+						}
+// 						NoRemove ControlPanel
+// 						{
+// 							NoRemove NameSpace
+// 							{
+// 								ForceRemove  %CLSID% = s '%DESCRIPTION%'
+// 							}
+// 						}
+					}
+
+// 					NoRemove 'Shell Extensions'
+// 					{
+// 						NoRemove Approved
+// 						{
+// 							ForceRemove val %CLSID% = s '%DESCRIPTION%'
+// 						}
+// 					}
+				}
+			}
+		}
+	}
+}

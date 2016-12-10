@@ -1,0 +1,34 @@
+// ShellPropPage.idl : ShellPropPage 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(ShellPropPage.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(A126E108-CB26-49F6-8695-66AF761E05FF),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IPropPage : IDispatch{
+};
+[
+	uuid(E39F2A7F-D1D6-49BF-A9BC-F20A7EB14AD8),
+	version(1.0),
+]
+library ShellPropPageLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(57C0ED2B-254D-4912-80F0-2C4138F9E289)		
+	]
+	coclass PropPage
+	{
+		[default] interface IPropPage;
+	};
+};
+
