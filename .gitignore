@@ -32,7 +32,6 @@
 *.suo
 *.opensdf
 *.sdf
-*.rgs
 */Debug/
 */*/*.aps
 */*/*/*.aps

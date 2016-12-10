@@ -1,0 +1,39 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {A0551CF4-63C6-4C1E-A419-41D2E6437BF6} = s 'StarupProgressHook Class'
+		{
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{E13E5C68-7E8F-41AE-B3E8-27FF6BAA1106}'
+			Version = s '1.0'
+		}
+	}
+}
+
+HKLM
+{
+	SOFTWARE
+	{
+		Microsoft
+		{
+			Windows
+			{
+				CurrentVersion
+				{
+					Explorer
+					{
+						ShellExecuteHooks
+						{
+							val {E13E5C68-7E8F-41AE-B3E8-27FF6BAA1106} = s ''
+						}
+					}
+				}
+			}
+		}
+	}
+}
