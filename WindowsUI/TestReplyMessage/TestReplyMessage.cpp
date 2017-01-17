@@ -1,8 +1,9 @@
-// Test.cpp : 定义应用程序的入口点。
+// TestReplyMessage.cpp : 定义应用程序的入口点。
 //
 
 #include "stdafx.h"
-#include "Test.h"
+#include "TestReplyMessage.h"
+#include <sstream>
 
 #define MAX_LOADSTRING 100
 
@@ -10,13 +11,13 @@
 HINSTANCE hInst;								// 当前实例
 TCHAR szTitle[MAX_LOADSTRING];					// 标题栏文本
 TCHAR szWindowClass[MAX_LOADSTRING];			// 主窗口类名
+ UINT g_TestRegister = 0;
 
 // 此代码模块中包含的函数的前向声明:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
 BOOL				InitInstance(HINSTANCE, int);
 LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
-
 #define WM_REPLY_OK WM_USER + 10000
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
@@ -33,7 +34,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	// 初始化全局字符串
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadString(hInstance, IDC_TEST, szWindowClass, MAX_LOADSTRING);
+	LoadString(hInstance, IDC_TESTREPLYMESSAGE, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
 
 	// 执行应用程序初始化:
@@ -42,7 +43,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TEST));
+	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TESTREPLYMESSAGE));
 
 	// 主消息循环:
 	while (GetMessage(&msg, NULL, 0, 0))
@@ -83,10 +84,10 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.cbClsExtra		= 0;
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_TEST));
+	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_TESTREPLYMESSAGE));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_TEST);
+	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_TESTREPLYMESSAGE);
 	wcex.lpszClassName	= szWindowClass;
 	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -138,6 +139,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	int wmId, wmEvent;
 	PAINTSTRUCT ps;
 	HDC hdc;
+    const UINT RegisterMessage = g_TestRegister;
+
+    if (message == RegisterMessage)
+    {
+        std::wstringstream ss;
+        ss << L"消息ID" << RegisterMessage;
+
+        MessageBox(hWnd, ss.str().c_str(), nullptr, MB_OK);
+        return S_OK;
+    }
 
 	switch (message)
 	{
@@ -165,34 +176,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
-    case WM_NCCREATE:
-        {
-            OutputDebugString(L"WM_NCCREATE\n");
-            return DefWindowProc(hWnd, message, wParam, lParam);
-        }
     case WM_CREATE:
         {
-            OutputDebugString(L"WM_CREATE\n");
-            HMENU sysMenu = GetSystemMenu(hWnd, FALSE);
-            RemoveMenu(sysMenu, SC_MOVE, MF_REMOVE);
-            break;
-        }
-    case WM_KEYDOWN:
-        {
-            HWND replyHwnd = FindWindow(NULL, L"TestReplyMessage");
-            if (replyHwnd)
-            {
-                UINT testRegisterID = 
-                    ::RegisterWindowMessage(L"TestRegisterWindowMessage");
-                SendMessage(replyHwnd, testRegisterID, 0, 0);
-            }
-            
-
-//             HWND moveHwnd = reinterpret_cast<HWND>(0x00060B2A);
-//             TCHAR szBuf[1024];
-//             GetWindowTextW(moveHwnd, szBuf, 1024);
-//             SetWindowPos(moveHwnd, 0, 500, 500, 0, 0, SWP_NOSIZE|SWP_SHOWWINDOW);
-           // FindWindow()
+            g_TestRegister = 
+                RegisterWindowMessage(L"TestRegisterWindowMessage");
             break;
         }
 	default:
