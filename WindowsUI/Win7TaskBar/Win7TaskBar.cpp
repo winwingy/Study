@@ -5,6 +5,9 @@
 #include "Win7TaskBar.h"
 #include <ShlObj.h>
 #include <dwmapi.h>
+#include "PictureManager.h"
+#include <assert.h>
+#pragma comment(lib, "dwmapi.lib")
 
 #define MAX_LOADSTRING 100
 
@@ -83,7 +86,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.cbClsExtra		= 0;
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WIN7TASKBAR));
+	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_SMALL));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
 	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_WIN7TASKBAR);
@@ -154,6 +157,55 @@ void OnThumbnailClicked(int wmId)
         }
     }
 }
+
+void OnSendThumbnail(HWND hWnd, int width, int height)
+{
+    PictureManager picMgr;
+    Bitmap* bmp = picMgr.LoadBitmapFromRc(IDI_ICON8, 24, 24);
+    assert(bmp);
+    Bitmap* resizeBmp = picMgr.ResizeBitmap(bmp, width, height, true);
+    HBITMAP hBmp = nullptr;
+    resizeBmp->GetHBITMAP(UINT(Color::AlphaMask), &hBmp);
+    DwmSetIconicThumbnail(hWnd, hBmp, 0);
+    DeleteObject(hBmp);
+    delete resizeBmp;
+    delete bmp;
+}
+
+void OnSetIconicPreView(HWND hWnd)
+{
+    PictureManager picMgr;
+    Bitmap* bmp = picMgr.LoadBitmapFromRc(IDI_ICON8, 32, 32);
+    assert(bmp);
+    Bitmap* resizeBmp = picMgr.ResizeBitmap(bmp, 500, 300, true);
+    HBITMAP hBmp = nullptr;
+    resizeBmp->GetHBITMAP(UINT(Color::AlphaMask), &hBmp);
+    DwmSetIconicLivePreviewBitmap(hWnd, hBmp, nullptr, 0);
+    DeleteObject(hBmp);
+    delete resizeBmp;
+    delete bmp;
+}
+
+HRESULT EnableBlurBehind(HWND hwnd, bool enable)
+{
+    HRESULT hr = S_OK;
+
+    // Create and populate the Blur Behind structure
+    DWM_BLURBEHIND bb = { 0 };
+
+    // Enable Blur Behind and apply to the entire client area
+    bb.dwFlags = DWM_BB_ENABLE;
+    bb.fEnable = enable;
+    bb.hRgnBlur = NULL;
+
+    // Apply Blur Behind
+    hr = DwmEnableBlurBehindWindow(hwnd, &bb);
+    if (SUCCEEDED(hr))
+    {
+        // ...
+    }
+    return hr;
+}
 //
 //  º¯Êý: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -219,83 +271,100 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
         }
     case WM_KEYDOWN:
+    {
+        switch(wParam)
         {
-            switch(wParam)
+        case 'A':
             {
-            case 'A':
-                {
-//                     HICON icon = reinterpret_cast<HICON>(
-//                         LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON1), 
-//                         IMAGE_ICON, 0, 0, LR_SHARED));
-                    HICON icon = reinterpret_cast<HICON>(
-                        LoadIcon(hInst, MAKEINTRESOURCE(IDI_ICON1)));
-                    g_taskBar->SetProgressState(hWnd, TBPF_PAUSED);
-                    g_taskBar->SetProgressValue(hWnd, 50, 100);
-                    g_taskBar->SetOverlayIcon(hWnd, icon, L"TestIcon");
-                    break;
-                }
-            case 'B':
-                {
-                    THUMBBUTTONMASK mask = THB_ICON|THB_TOOLTIP;
-                    THUMBBUTTON buttons[3];
-                    {
-                        buttons[0].dwMask = mask;
-                        buttons[0].iId = TBUTTON_LEFT;
-                        HICON icon = reinterpret_cast<HICON>(
-                            LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON_LEFT), 
-                            IMAGE_ICON, 32, 32, LR_SHARED));
-                        buttons[0].hIcon = icon;
-//                         buttons[0].hIcon = LoadIcon(
-//                             hInst, MAKEINTRESOURCE(IDI_ICON_LEFT));
-        
-                        _tcscpy_s(buttons[0].szTip, L"Left");
-                    }
-         
-                    {
-                        buttons[1].dwMask = mask;
-                        buttons[1].iId = TBUTTON_MIDDLE;
-                        HICON icon = reinterpret_cast<HICON>(
-                            LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON_MIDDLE), 
-                            IMAGE_ICON, 128, 128, LR_SHARED));
-                        buttons[1].hIcon = icon;
-//                         buttons[1].hIcon = LoadIcon(
-//                             hInst, MAKEINTRESOURCE(IDI_ICON_MIDDLE));
-                        _tcscpy_s(buttons[1].szTip, L"Middle");
-                    }
-                    {
-                        buttons[2].dwMask = mask;
-                        buttons[2].iId = TBUTTON_RIGHT;
-                        HICON icon = reinterpret_cast<HICON>(
-                            LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON_RIGHT), 
-                            IMAGE_ICON, 128, 128, LR_SHARED));
-                        buttons[2].hIcon = icon;
-//                         buttons[2].hIcon = LoadIcon(
-//                             hInst, MAKEINTRESOURCE(IDI_ICON_RIGHT));
-                        _tcscpy_s(buttons[2].szTip, L"Right");
-                    }
-                    g_taskBar->ThumbBarAddButtons(hWnd, _countof(buttons), 
-                        buttons);
-                    break;
-                }
-            case 'C':
-                {
-                    g_taskBar->SetThumbnailTooltip(hWnd, L"Hello Taskbar");
-                    break;
-                }
-            case 'D':
-                {
-                    BOOL enable = TRUE;
-                    DwmSetWindowAttribute(hWnd, DWMWA_HAS_ICONIC_BITMAP,
-                        &enable, sizeof(enable));
-                    DwmSetWindowAttribute(hWnd, DWMWA_FORCE_ICONIC_REPRESENTATION,
-                        &enable, sizeof(enable));
-
-                    break;
-                }
-
+    //                     HICON icon = reinterpret_cast<HICON>(
+    //                         LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON1), 
+    //                         IMAGE_ICON, 0, 0, LR_SHARED));
+                HICON icon = reinterpret_cast<HICON>(
+                    LoadIcon(hInst, MAKEINTRESOURCE(IDI_ICON1)));
+                g_taskBar->SetProgressState(hWnd, TBPF_PAUSED);
+                g_taskBar->SetProgressValue(hWnd, 50, 100);
+                g_taskBar->SetOverlayIcon(hWnd, icon, L"TestIcon");
+                break;
             }
+        case 'B':
+            {
+                THUMBBUTTONMASK mask = THB_ICON|THB_TOOLTIP;
+                THUMBBUTTON buttons[3];
+                {
+                    buttons[0].dwMask = mask;
+                    buttons[0].iId = TBUTTON_LEFT;
+                    HICON icon = reinterpret_cast<HICON>(
+                        LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON_LEFT), 
+                        IMAGE_ICON, 32, 32, LR_SHARED));
+                    buttons[0].hIcon = icon;
+    //                         buttons[0].hIcon = LoadIcon(
+    //                             hInst, MAKEINTRESOURCE(IDI_ICON_LEFT));
+        
+                    _tcscpy_s(buttons[0].szTip, L"Left");
+                }
+         
+                {
+                    buttons[1].dwMask = mask;
+                    buttons[1].iId = TBUTTON_MIDDLE;
+                    HICON icon = reinterpret_cast<HICON>(
+                        LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON_MIDDLE), 
+                        IMAGE_ICON, 128, 128, LR_SHARED));
+                    buttons[1].hIcon = icon;
+    //                         buttons[1].hIcon = LoadIcon(
+    //                             hInst, MAKEINTRESOURCE(IDI_ICON_MIDDLE));
+                    _tcscpy_s(buttons[1].szTip, L"Middle");
+                }
+                {
+                    buttons[2].dwMask = mask;
+                    buttons[2].iId = TBUTTON_RIGHT;
+                    HICON icon = reinterpret_cast<HICON>(
+                        LoadImage(hInst, MAKEINTRESOURCE(IDI_ICON_RIGHT), 
+                        IMAGE_ICON, 128, 128, LR_SHARED));
+                    buttons[2].hIcon = icon;
+    //                         buttons[2].hIcon = LoadIcon(
+    //                             hInst, MAKEINTRESOURCE(IDI_ICON_RIGHT));
+                    _tcscpy_s(buttons[2].szTip, L"Right");
+                }
+                g_taskBar->ThumbBarAddButtons(hWnd, _countof(buttons), 
+                    buttons);
+                break;
+            }
+        case 'C':
+            {
+                g_taskBar->SetThumbnailTooltip(hWnd, L"Hello Taskbar");
+                break;
+            }
+        case 'D':
+            {
+                BOOL enable = TRUE;
+                DwmSetWindowAttribute(hWnd, DWMWA_HAS_ICONIC_BITMAP,
+                    &enable, sizeof(enable));
+                DwmSetWindowAttribute(hWnd, DWMWA_FORCE_ICONIC_REPRESENTATION,
+                    &enable, sizeof(enable));
+
+                break;
+            }
+        case 'E':
+        {
+            static bool enable = false;
+            enable = !enable;
+            EnableBlurBehind(hWnd, enable);
             break;
         }
+
+        }
+        break;
+    }
+    case WM_DWMSENDICONICTHUMBNAIL:
+    {
+        OnSendThumbnail(hWnd, HIWORD(lParam), LOWORD(lParam));
+        break;
+    }
+    case WM_DWMSENDICONICLIVEPREVIEWBITMAP:
+    {
+        OnSetIconicPreView(hWnd);
+        break;
+    }
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

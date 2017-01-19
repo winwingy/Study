@@ -43,3 +43,5 @@
 */Output/
 /XLogger/Output/exe
 /XLogger/Src/Workspace/Backup
+/*/Test/
+/*/TestCmd/

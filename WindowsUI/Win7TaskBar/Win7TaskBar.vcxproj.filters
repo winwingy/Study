@@ -16,9 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="small.ico">
-      <Filter>资源文件</Filter>
-    </None>
     <None Include="Win7TaskBar.ico">
       <Filter>资源文件</Filter>
     </None>
@@ -32,9 +29,6 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="ico00001.ico">
-      <Filter>资源文件</Filter>
-    </None>
-    <None Include="bitmap1.bmp">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
@@ -70,5 +64,34 @@
     <ResourceCompile Include="Win7TaskBar.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ico00002.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="ico00003.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="bitmap1.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="bitmap2.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="icon4.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="ico00004.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="icon5.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="icon6.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="icon7.ico">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
 </Project>
